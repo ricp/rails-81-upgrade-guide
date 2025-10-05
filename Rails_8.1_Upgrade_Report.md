@@ -24,45 +24,7 @@ Rails 8.1 represents a significant evolution in the Rails framework, introducing
 
 ## 🚀 Major New Features
 
-### 1. Active Job Continuations
-**Impact: High** | **Led by:** Donal McBreen (37signals)
-
-Transform long-running jobs into resilient, resumable processes that can survive deployments and restarts.
-
-**What it does:**
-- Breaks jobs into discrete steps with defined checkpoints
-- Resumes execution from last completed step after interruption
-- Particularly valuable for Kamal deployments (30-second shutdown windows)
-- Uses cursor-based tracking for progress management
-
-**Example Use Case:**
-```ruby
-class DataMigrationJob < ApplicationJob
-  include ActiveJob::Continuations
-
-  def initialize(batch_size: 1000)
-    @batch_size = batch_size
-  end
-
-  def process
-    # Process records in batches
-    # Job automatically resumes from cursor position if interrupted
-  end
-
-  def finalize
-    # Cleanup and completion tasks
-  end
-end
-```
-
-**Business Value:**
-- Zero-downtime deployments with long-running background tasks
-- Reduced job failure costs (no need to restart from beginning)
-- Better resource utilization during maintenance windows
-
----
-
-### 2. Local CI Integration
+### 1. Local CI Integration
 **Impact: High** | **Led by:** Jeremy Daer (37signals)
 
 Run your complete test suite locally with the same configuration as CI/CD environments.
@@ -85,6 +47,33 @@ $ bin/ci
 # Runs full test suite with CI configuration
 # Same environment, same results as GitHub Actions/CircleCI
 ```
+
+---
+
+### 2. Native Mobile Framework
+**Impact: High** | **Hotwire Native + Turbo Offline**
+
+Build web, iOS, and Android applications from a single Rails codebase with offline-first capabilities.
+
+**What it enables:**
+- Hotwire Native wraps Rails HTML in native mobile containers
+- Turbo Offline provides offline-first functionality
+- Progressive Web App (PWA) capabilities
+- Native mobile app offline support
+- Full iOS and Android SDK access when needed
+
+**Use Cases:**
+- Cross-platform mobile applications
+- Field service applications
+- Mobile data collection
+- Offline-first scenarios
+- Areas with unreliable connectivity
+
+**Integration:**
+- Works with existing Turbo/Hotwire applications
+- Supports Turbo Native (iOS/Android)
+- Service Worker-based architecture
+- Seamless online/offline transitions
 
 ---
 
@@ -122,7 +111,45 @@ bin/rails db:migrate
 
 ---
 
-### 4. Active Record Tenanting
+### 4. Active Job Continuations
+**Impact: High** | **Led by:** Donal McBreen (37signals)
+
+Transform long-running jobs into resilient, resumable processes that can survive deployments and restarts.
+
+**What it does:**
+- Breaks jobs into discrete steps with defined checkpoints
+- Resumes execution from last completed step after interruption
+- Particularly valuable for Kamal deployments (30-second shutdown windows)
+- Uses cursor-based tracking for progress management
+
+**Example Use Case:**
+```ruby
+class DataMigrationJob < ApplicationJob
+  include ActiveJob::Continuations
+
+  def initialize(batch_size: 1000)
+    @batch_size = batch_size
+  end
+
+  def process
+    # Process records in batches
+    # Job automatically resumes from cursor position if interrupted
+  end
+
+  def finalize
+    # Cleanup and completion tasks
+  end
+end
+```
+
+**Business Value:**
+- Zero-downtime deployments with long-running background tasks
+- Reduced job failure costs (no need to restart from beginning)
+- Better resource utilization during maintenance windows
+
+---
+
+### 5. Active Record Tenanting
 **Impact: High** | **Multi-Tenant Architecture**
 
 Build multi-tenant applications while writing code as if it were single-tenant.
@@ -152,7 +179,7 @@ end
 
 ---
 
-### 5. Structured Event Reporting
+### 6. Structured Event Reporting
 **Impact: Medium** | **Led by:** Adrianna Chang (Shopify)
 
 Unified interface for producing structured, machine-readable events.
@@ -182,30 +209,6 @@ Rails.event.set_context(request_id: "abc123", shop_id: 456)
 - Better integration with logging platforms (Datadog, New Relic)
 - Improved debugging and troubleshooting
 - Compliance and audit trail capabilities
-
----
-
-### 6. Turbo Offline (Offline-First Applications)
-**Impact: Medium-High** | **Status:** In Development
-
-Enable offline-first web and mobile applications with Hotwire.
-
-**What it enables:**
-- Progressive Web App (PWA) capabilities
-- Offline data synchronization
-- Native mobile app offline support (via Hotwire Native)
-- Seamless online/offline transitions
-
-**Use Cases:**
-- Field service applications
-- Mobile data collection
-- Remote work scenarios
-- Areas with unreliable connectivity
-
-**Integration:**
-- Works with existing Turbo/Hotwire applications
-- Supports Turbo Native (iOS/Android)
-- Service Worker-based architecture
 
 ---
 

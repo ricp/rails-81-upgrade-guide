@@ -324,12 +324,6 @@ See: Comparison Doc → Feature Adoption Priority Matrix
 - Gem compatibility issues
 See: Full Report → Risk Assessment
 
-### How much will it cost?
-**Answer:** Migration: Timeline varies by project complexity and resources
-Savings: Variable by usage (push notifications + CI optimization)
-ROI: 3-6 months
-See: Executive Summary → ROI Estimate
-
 ### Do we need to upgrade?
 **Answer:** Not immediately, but recommended if you:
 - Have stable Rails 8.0 with good tests
