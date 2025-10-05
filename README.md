@@ -62,12 +62,12 @@ This is the main entry point with:
 ## 🔑 Key Findings At-a-Glance
 
 ### Top 6 Features
-1. 🔄 **Active Job Continuations** - Resumable jobs, 50% cost reduction
-2. 📱 **Action Push Native** - Official push notifications, eliminates third-party fees
-3. 🏢 **Active Record Tenanting** - Built-in multi-tenancy
-4. 🧪 **Local CI** - 50-60% faster developer feedback
-5. 📊 **Structured Events** - Enhanced observability
-6. 🌐 **Turbo Offline** - Offline-first apps
+1. 🧪 **Local CI Integration** - 50-60% faster developer feedback, 15-25% CI cost reduction
+2. 📱 **Native Mobile Framework** - Build once → web + iOS + Android
+3. 📱 **Action Push Native** - Official push notifications, eliminates third-party fees
+4. 🔄 **Active Job Continuations** - Resumable jobs, 50% cost reduction
+5. 🏢 **Active Record Tenanting** - Built-in multi-tenancy
+6. 📊 **Structured Event Reporting** - Enhanced observability
 
 ### Critical Breaking Changes
 - Schema.rb alphabetically sorted (VCS impact)
