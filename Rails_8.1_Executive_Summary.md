@@ -13,29 +13,34 @@ Rails 8.1 introduces **6 major features** that enhance job reliability, develope
 
 ---
 
-## 🚀 Top 5 Features Worth Your Attention
+## 🚀 Top 6 Features Worth Your Attention
 
 ### 1. 🔄 Active Job Continuations
 **What:** Resumable background jobs that survive deployments
 **Why it matters:** Zero-downtime deployments, no lost work on interruptions
 **When to use:** Long-running data processing, migrations, report generation
 
-### 2. 📱 Action Push Native
+### 2. 📱 Native Mobile Framework
+**What:** Hotwire Native + Turbo Offline for web + iOS + Android
+**Why it matters:** Build once, deploy everywhere with offline-first capabilities
+**When to use:** Mobile apps requiring full native SDK access when needed
+
+### 3. 📱 Action Push Native
 **What:** Official iOS/Android push notifications (APNs + FCM)
 **Why it matters:** Native mobile engagement without third-party services
 **When to use:** Mobile apps, user engagement, transactional alerts
 
-### 3. 🏢 Active Record Tenanting
+### 4. 🏢 Active Record Tenanting
 **What:** Multi-tenant architecture with single-tenant code simplicity
 **Why it matters:** Build SaaS applications with data isolation by default
 **When to use:** B2B SaaS, white-label applications, multi-customer platforms
 
-### 4. 🧪 Local CI Integration
+### 5. 🧪 Local CI Integration
 **What:** Run complete test suite locally with CI configuration
 **Why it matters:** Faster feedback, reduced CI costs, consistent testing
 **When to use:** Every development workflow (immediate adoption)
 
-### 5. 📊 Structured Event Reporting
+### 6. 📊 Structured Event Reporting
 **What:** Machine-readable structured events for observability
 **Why it matters:** Better monitoring, debugging, and compliance
 **When to use:** Production applications needing enhanced observability
