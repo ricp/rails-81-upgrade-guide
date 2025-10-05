@@ -1,7 +1,6 @@
 # Rails 8.1 Upgrade Documentation Suite
 ## Complete Guide for Your Migration from Rails 8.0 to 8.1
 
-**Prepared by:** [Richard Piacentini](https://linkedin.com/in/richardpiacentini/), with AI
 **Date:** October 5, 2025
 **Research Scope:** Rails 8.1 Beta 1 → Stable Release
 
@@ -44,7 +43,7 @@
 
 ## 🔑 Key Findings Summary
 
-### 🚀 Top 7 Features to Know
+### 🚀 Top 6 Features to Know
 
 1. **🧪 Local CI Integration**
    - Run tests locally with CI config
@@ -76,11 +75,6 @@
    - Machine-readable events
    - Better observability
    - Enhanced debugging
-
-7. **🚀 Production Battle-Tested**
-   - 500+ contributors, 2,500+ commits
-   - Used by 37signals (Basecamp, HEY)
-   - Proven scalability and reliability
 
 ### 📦 Feature Transparency Note
 
@@ -379,34 +373,6 @@ Document any:
 - Questions from team
 - Lessons learned during migration
 - Suggestions for improvement
-
----
-
-## ✅ Action Items Checklist
-
-### Immediate (This Week)
-- [ ] Share Executive Summary with decision makers
-- [ ] Schedule technical review meeting
-- [ ] Assign document ownership
-- [ ] Review breaking changes impact
-
-### Short-term (Next 2 Weeks)
-- [ ] Complete Pre-Migration Assessment (use checklist)
-- [ ] Create detailed migration plan
-- [ ] Assess resource requirements
-- [ ] Get stakeholder approval
-
-### Medium-term (Month 1)
-- [ ] Set up Rails 8.1 development environment
-- [ ] Begin compatibility testing
-- [ ] Plan feature adoption roadmap
-- [ ] Schedule team training
-
-### Long-term
-- [ ] Execute migration (follow checklist)
-- [ ] Deploy to production
-- [ ] Implement new features
-- [ ] Measure ROI
 
 ---
 

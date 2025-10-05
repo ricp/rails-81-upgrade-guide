@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:edgeguides.rubyonrails.org)",
+      "WebFetch(domain:rubyonrails.org)",
+      "WebFetch(domain:blog.codeminer42.com)",
+      "Bash(git tag:*)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "serena",
+    "playwright",
+    "magicui",
+    "TestSprite",
+    "context7",
+    "github"
+  ]
+}

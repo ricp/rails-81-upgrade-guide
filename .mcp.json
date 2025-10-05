@@ -1,0 +1,53 @@
+{
+  "mcpServers": {
+    "serena": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server",
+        "--context",
+        "ide-assistant",
+        "--project",
+        "/Users/ricp/code/CheqsGlobal/cheqs-backend"
+      ],
+      "env": {}
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"],
+      "env": {}
+    },
+    "magicui": {
+      "command": "npx",
+      "args": ["-y", "@magicuidesign/mcp@latest"]
+    },
+  "TestSprite": {
+          "type": "stdio",
+          "command": "npx", 
+          "args": [
+            "@testsprite/testsprite-mcp@latest"
+          ],
+          "env": {
+            "API_KEY": "sk-user-PPHaPLlXVSZfXmzR4sy2Ns9n9JFGw6vYu91aTg3q_YQQUfbyIm48lGZ_eS2kjJdigs0qBiZfgySTbdkpvwv6uvIJ0UyUaagQkYEwNiFT-4_1yaiFc8vM_Dx7XcmkheeJfvk"
+          }
+        }, 
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "env": {}
+    },
+    "github": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-github@latest"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "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"
+      }
+    }
+  }
+}
