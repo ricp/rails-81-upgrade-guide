@@ -1,6 +1,7 @@
 # Rails 8.0 vs 8.1 Feature Comparison
 ## Side-by-Side Analysis for Upgrade Planning
 
+**Prepared by:** [Richard Piacentini](https://linkedin.com/in/richardpiacentini/), with AI
 **Document Date:** October 5, 2025
 
 ---

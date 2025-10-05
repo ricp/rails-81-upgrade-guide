@@ -1,6 +1,7 @@
 # Rails 8.1 Upgrade Documentation Suite
 ## Complete Guide for Your Migration from Rails 8.0 to 8.1
 
+**Prepared by:** [Richard Piacentini](https://linkedin.com/in/richardpiacentini/), with AI
 **Date:** October 5, 2025
 **Research Scope:** Rails 8.1 Beta 1 → Stable Release
 

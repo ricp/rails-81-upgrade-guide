@@ -1,6 +1,7 @@
 # Rails 8.1 Executive Summary
 ## One-Page Overview for Decision Makers
 
+**Prepared by:** [Richard Piacentini](https://linkedin.com/in/richardpiacentini/), with AI
 **Date:** October 5, 2025 | **Your Version:** Rails 8.0 → **Upgrade To:** Rails 8.1
 
 ---

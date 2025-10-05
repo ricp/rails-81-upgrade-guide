@@ -1,6 +1,7 @@
 # Rails 8.1 Upgrade Report
 ## What's Coming for Your Application
 
+**Prepared by:** [Richard Piacentini](https://linkedin.com/in/richardpiacentini/), with AI
 **Report Date:** October 5, 2025
 **Current Version:** Rails 8.0
 **Target Version:** Rails 8.1 (Beta 1 Released September 2025)

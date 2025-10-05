@@ -435,8 +435,7 @@ Gem Name         | Current Version | Rails 8.1 Compatible? | Action Required
 
 ---
 
-**Prepared By:** Richard Piacentini with AI Analysis
-**LinkedIn:** https://linkedin.com/in/richardpiacentini/
+**Prepared by:** [Richard Piacentini](https://linkedin.com/in/richardpiacentini/), with AI
 **Migration Checklist Version:** 1.0
 **Last Updated:** October 5, 2025
 **Next Review:** ___________
