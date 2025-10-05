@@ -427,8 +427,7 @@ This documentation suite provides everything needed for a successful Rails 8.1 u
 ---
 
 **Documentation Suite Version:** 1.0
-**Prepared By:** Richard Piacentini with AI Analysis
-**LinkedIn:** https://linkedin.com/in/richardpiacentini/
+**Prepared by:** [Richard Piacentini](https://linkedin.com/in/richardpiacentini/), with AI
 **Based On:** Rails 8.1 Beta 1 + Deep Web Research
 **Status:** ✅ Complete & Ready for Use
 
