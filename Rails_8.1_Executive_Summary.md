@@ -182,13 +182,13 @@ All ecosystem features integrate seamlessly with Rails 8.1 but require separate 
 
 ## 📞 Next Actions
 
-| Priority | Action | Owner | Deadline |
-|----------|--------|-------|----------|
-| 🔴 High | Review breaking changes impact | Tech Lead | 1 week |
-| 🔴 High | Gem compatibility audit | DevOps | 1 week |
-| 🟡 Medium | Create migration plan | PM + Tech Lead | 2 weeks |
-| 🟡 Medium | Schedule team training | Engineering Manager | 3 weeks |
-| 🟢 Low | Evaluate new features for roadmap | Product Team | 4 weeks |
+| Priority | Action | Owner |
+|----------|--------|-------|
+| 🔴 High | Review breaking changes impact | Tech Lead |
+| 🔴 High | Gem compatibility audit | DevOps |
+| 🟡 Medium | Create migration plan | PM + Tech Lead |
+| 🟡 Medium | Schedule team training | Engineering Manager |
+| 🟢 Low | Evaluate new features for roadmap | Product Team |
 
 ---
 
