@@ -25,6 +25,14 @@ This comprehensive documentation suite provides everything needed for a Rails 8.
 - **[Rails_8.0_vs_8.1_Comparison.md](Rails_8.0_vs_8.1_Comparison.md)** - Comparison in markdown
 - **[Rails_8.1_Migration_Checklist.md](Rails_8.1_Migration_Checklist.md)** - Checklist in markdown
 
+#### Feature Deep-Dives (Technical Reference)
+- **[Local CI Integration](features/Local_CI_Integration.md)** - Complete guide to local CI testing
+- **[Native Mobile Framework](features/Native_Mobile_Framework.md)** - Hotwire Native + Turbo Offline implementation
+- **[Action Push Native](features/Action_Push_Native.md)** - iOS/Android push notifications setup
+- **[Active Job Continuations](features/Active_Job_Continuations.md)** - Resumable background jobs
+- **[Active Record Tenanting](features/Active_Record_Tenanting.md)** - Multi-tenant architecture
+- **[Structured Event Reporting](features/Structured_Event_Reporting.md)** - Machine-readable observability
+
 ---
 
 ## 🎯 Quick Start
@@ -167,11 +175,11 @@ All HTML documents feature:
 ### Documentation Suite
 - 5 HTML documents (client-ready)
 - 5 Markdown documents (developer reference)
+- 6 Feature deep-dive pages (technical reference)
 - 1 README (this file)
 - Complete feature analysis
 - Migration planning tools
 - Risk assessments
-- Timeline templates
 
 ### Professional Quality
 - Fully researched and fact-checked

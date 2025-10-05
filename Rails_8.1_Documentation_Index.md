@@ -45,33 +45,33 @@
 
 ### 🚀 Top 6 Features to Know
 
-1. **🧪 Local CI Integration**
+1. **🧪 [Local CI Integration](features/Local_CI_Integration.md)**
    - Run tests locally with CI config
    - 50-60% faster feedback
    - 15-25% CI cost reduction
 
-2. **📱 Native Mobile Framework**
+2. **📱 [Native Mobile Framework](features/Native_Mobile_Framework.md)**
    - Hotwire Native + Turbo Offline
    - Build once → web + iOS + Android
    - Offline-first capabilities
    - Full native SDK access when needed
 
-3. **📱 Action Push Native**
+3. **📱 [Action Push Native](features/Action_Push_Native.md)**
    - Official iOS/Android push notifications
    - 10M+ notifications/day (37signals)
    - Direct APNs/FCM integration
 
-4. **🔄 Active Job Continuations**
+4. **🔄 [Active Job Continuations](features/Active_Job_Continuations.md)**
    - Resumable background jobs
    - Zero-downtime deployments
    - 50% reduction in job failure costs
 
-5. **🏢 Active Record Tenanting**
+5. **🏢 [Active Record Tenanting](features/Active_Record_Tenanting.md)**
    - Built-in multi-tenant architecture
    - Write single-tenant code
    - Framework handles isolation
 
-6. **📊 Structured Event Reporting**
+6. **📊 [Structured Event Reporting](features/Structured_Event_Reporting.md)**
    - Machine-readable events
    - Better observability
    - Enhanced debugging
