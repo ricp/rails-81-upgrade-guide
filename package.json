@@ -4,6 +4,7 @@
   "description": "**Date:** October 5, 2025 **Status:** ✅ Complete & Ready for Client Presentation",
   "main": "index.js",
   "scripts": {
+    "prebuild": "gh api user --jq '{name, bio, avatar_url, html_url, company, location, blog, twitter_username, public_repos, followers, following}' > src/_data/github.json",
     "build": "eleventy",
     "serve": "eleventy --serve",
     "test": "echo \"Error: no test specified\" && exit 1"

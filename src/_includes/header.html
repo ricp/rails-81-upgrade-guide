@@ -325,8 +325,15 @@
             {% if pageTitle %}<h1>{{ pageTitle }}</h1>{% endif %}
             {% if subtitle %}<p class="subtitle">{{ subtitle }}</p>{% endif %}
             <div class="meta-info">
-                <p><strong>Prepared by:</strong> <a href="{{ site.authorLinkedIn }}" target="_blank">{{ site.author }}</a>, with AI</p>
-                <p><strong>Date:</strong> {{ site.preparedDate }}</p>
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <img src="{{ github.avatar_url }}" alt="{{ github.name }}" style="width: 60px; height: 60px; border-radius: 50%; border: 3px solid #d00;">
+                    <div>
+                        <p style="margin: 0;"><strong>Project Lead:</strong> <a href="{{ github.html_url }}" target="_blank">{{ github.name }}</a></p>
+                        <p style="margin: 5px 0 0 0; font-size: 0.9em; color: #666;">{{ github.company }} • {{ github.location }}</p>
+                    </div>
+                </div>
+                <p><strong>AI Research & Analysis:</strong> Claude Sonnet 4.5 (Anthropic)</p>
+                <p><strong>Documentation Suite:</strong> {{ site.preparedDate }}</p>
                 {% if metaInfo %}{{ metaInfo }}{% endif %}
             </div>
         </header>
