@@ -15,14 +15,14 @@
 
 ### 🎯 Quick Stats
 
-| Metric | Value |
-|--------|-------|
-| 📄 **Documents** | 12 professional HTML pages |
-| 🔍 **Features Analyzed** | 6 in-depth technical deep-dives |
-| ⚡ **Breaking Changes** | 20+ documented with migration paths |
-| 💰 **Total Cost** | $51.17 AI processing |
-| 📊 **ROI** | 958-1,412% vs traditional consulting |
-| ⏱️ **Delivery** | 3 days vs 2-3 weeks traditional |
+| Metric                   | Value                                |
+| ------------------------ | ------------------------------------ |
+| 📄 **Documents**         | 12 professional HTML pages           |
+| 🔍 **Features Analyzed** | 6 in-depth technical deep-dives      |
+| ⚡ **Breaking Changes**  | 20+ documented with migration paths  |
+| 💰 **Total Cost**        | $51.17 AI processing                 |
+| 📊 **ROI**               | 958-1,412% vs traditional consulting |
+| ⏱️ **Delivery**          | 3 days vs 2-3 weeks traditional      |
 
 </div>
 
@@ -188,7 +188,7 @@ This comprehensive documentation suite provides everything needed for a Rails 8.
 ```
 /Users/ricp/code/NewsLetter/
 ├── README.md                                  # This file
-├── Rails_8.1_Documentation_Index.html         # START HERE (HTML)
+├── index.html         # START HERE (HTML)
 ├── Rails_8.1_Documentation_Index.md           # Index (Markdown)
 ├── Rails_8.1_Executive_Summary.html           # Executive summary (HTML)
 ├── Rails_8.1_Executive_Summary.md             # Executive summary (Markdown)
@@ -204,7 +204,7 @@ This comprehensive documentation suite provides everything needed for a Rails 8.
 
 ## 🚀 Next Steps
 
-1. **Review** - Open `Rails_8.1_Documentation_Index.html` in browser
+1. **Review** - Open `index.html` in browser
 2. **Customize** - Add customer-specific details if needed
 3. **Present** - Share HTML files with your customer
 4. **Follow-up** - Use checklist for migration planning

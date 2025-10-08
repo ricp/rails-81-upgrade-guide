@@ -2,113 +2,115 @@
 title: Rails 8.0 vs 8.1 Feature Comparison
 pageTitle: Rails 8.0 vs 8.1 Feature Comparison
 subtitle: Side-by-Side Analysis for Upgrade Planning
-backLink: Rails_8.1_Documentation_Index.html
+backLink: index.html
 metaInfo: October 5, 2025
 permalink: Rails_8.0_vs_8.1_Comparison.html
 ---
+
 {% include "header.html" %}
 
-        <section>
-            <h2>📊 Quick Comparison Overview</h2>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Aspect</th>
-                        <th>Rails 8.0</th>
-                        <th>Rails 8.1</th>
-                        <th>Upgrade Impact</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Release Date</strong></td>
-                        <td>October 2024</td>
-                        <td>September 2025 (Beta)</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Major Features</strong></td>
-                        <td>Solid Queue, Kamal 2, Propshaft</td>
-                        <td>Job Continuations, Local CI, Action Push</td>
-                        <td><span class="badge badge-green">Additive</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Breaking Changes</strong></td>
-                        <td>Multiple (from 7.x)</td>
-                        <td>Moderate (listed below)</td>
-                        <td><span class="badge badge-yellow">Medium</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Mobile Support</strong></td>
-                        <td>Hotwire Native</td>
-                        <td>Action Push, Turbo Offline</td>
-                        <td><span class="badge badge-green">Enhanced</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Multi-Tenancy</strong></td>
-                        <td>Manual implementation</td>
-                        <td>Active Record Tenanting</td>
-                        <td><span class="badge badge-green">Built-in</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Observability</strong></td>
-                        <td>ActiveSupport::Notifications</td>
-                        <td>Structured Event Reporting</td>
-                        <td><span class="badge badge-green">Enhanced</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Developer Experience</strong></td>
-                        <td>Standard</td>
-                        <td>Local CI, Improved DX</td>
-                        <td><span class="badge badge-green">Improved</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+<section>
+  <h2>📊 Quick Comparison Overview</h2>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Rails 8.0</th>
+        <th>Rails 8.1</th>
+        <th>Upgrade Impact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Release Date</strong></td>
+        <td>October 2024</td>
+        <td>September 2025 (Beta)</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><strong>Major Features</strong></td>
+        <td>Solid Queue, Kamal 2, Propshaft</td>
+        <td>Job Continuations, Local CI, Action Push</td>
+        <td><span class="badge badge-green">Additive</span></td>
+      </tr>
+      <tr>
+        <td><strong>Breaking Changes</strong></td>
+        <td>Multiple (from 7.x)</td>
+        <td>Moderate (listed below)</td>
+        <td><span class="badge badge-yellow">Medium</span></td>
+      </tr>
+      <tr>
+        <td><strong>Mobile Support</strong></td>
+        <td>Hotwire Native</td>
+        <td>Action Push, Turbo Offline</td>
+        <td><span class="badge badge-green">Enhanced</span></td>
+      </tr>
+      <tr>
+        <td><strong>Multi-Tenancy</strong></td>
+        <td>Manual implementation</td>
+        <td>Active Record Tenanting</td>
+        <td><span class="badge badge-green">Built-in</span></td>
+      </tr>
+      <tr>
+        <td><strong>Observability</strong></td>
+        <td>ActiveSupport::Notifications</td>
+        <td>Structured Event Reporting</td>
+        <td><span class="badge badge-green">Enhanced</span></td>
+      </tr>
+      <tr>
+        <td><strong>Developer Experience</strong></td>
+        <td>Standard</td>
+        <td>Local CI, Improved DX</td>
+        <td><span class="badge badge-green">Improved</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
 
-        <section>
-            <h2>🆕 New Features in Rails 8.1</h2>
+<section>
+  <h2>🆕 New Features in Rails 8.1</h2>
 
-            <h3>1. Active Job Management</h3>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Rails 8.0</th>
-                        <th>Rails 8.1</th>
-                        <th>Benefit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Job Continuations</strong></td>
-                        <td>❌ Not available</td>
-                        <td>✅ Resumable jobs with checkpoints</td>
-                        <td>Zero-downtime deploys</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Solid Queue</strong></td>
-                        <td>✅ Available</td>
-                        <td>✅ Available + enhanced</td>
-                        <td>Better job processing</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Job Interruption Handling</strong></td>
-                        <td>Manual retry from start</td>
-                        <td>Automatic resume from last step</td>
-                        <td>Reduced processing costs</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Kamal Integration</strong></td>
-                        <td>Basic</td>
-                        <td>Optimized for 30s shutdown</td>
-                        <td>Seamless deployments</td>
-                    </tr>
-                </tbody>
-            </table>
+  <h3>1. Active Job Management</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Rails 8.0</th>
+        <th>Rails 8.1</th>
+        <th>Benefit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Job Continuations</strong></td>
+        <td>❌ Not available</td>
+        <td>✅ Resumable jobs with checkpoints</td>
+        <td>Zero-downtime deploys</td>
+      </tr>
+      <tr>
+        <td><strong>Solid Queue</strong></td>
+        <td>✅ Available</td>
+        <td>✅ Available + enhanced</td>
+        <td>Better job processing</td>
+      </tr>
+      <tr>
+        <td><strong>Job Interruption Handling</strong></td>
+        <td>Manual retry from start</td>
+        <td>Automatic resume from last step</td>
+        <td>Reduced processing costs</td>
+      </tr>
+      <tr>
+        <td><strong>Kamal Integration</strong></td>
+        <td>Basic</td>
+        <td>Optimized for 30s shutdown</td>
+        <td>Seamless deployments</td>
+      </tr>
+    </tbody>
+  </table>
 
-            <h4>Code Example Rails 8.1:</h4>
-            <pre>class DataMigrationJob < ApplicationJob
+  <h4>Code Example Rails 8.1:</h4>
+  <pre>
+class DataMigrationJob < ApplicationJob
   include ActiveJob::Continuations
 
   def initialize(batch_size: 1000)
@@ -118,632 +120,699 @@ permalink: Rails_8.0_vs_8.1_Comparison.html
   def process
     # Resumes from cursor position if interrupted
   end
-end</pre>
+end</pre
+  >
 
-            <h3>2. Mobile & Push Notifications</h3>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Rails 8.0</th>
-                        <th>Rails 8.1</th>
-                        <th>Benefit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Push Notifications</strong></td>
-                        <td>Third-party gems</td>
-                        <td>✅ Action Push Native (official)</td>
-                        <td>No external dependencies</td>
-                    </tr>
-                    <tr>
-                        <td><strong>iOS Support (APNs)</strong></td>
-                        <td>Via gems</td>
-                        <td>✅ Built-in</td>
-                        <td>Native integration</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Android Support (FCM)</strong></td>
-                        <td>Via gems</td>
-                        <td>✅ Built-in</td>
-                        <td>Native integration</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Hotwire Native</strong></td>
-                        <td>✅ Available</td>
-                        <td>✅ Available + enhanced</td>
-                        <td>Better mobile DX</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Offline Support</strong></td>
-                        <td>Manual</td>
-                        <td>✅ Turbo Offline</td>
-                        <td>Offline-first apps</td>
-                    </tr>
-                </tbody>
-            </table>
+  <h3>2. Mobile & Push Notifications</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Rails 8.0</th>
+        <th>Rails 8.1</th>
+        <th>Benefit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Push Notifications</strong></td>
+        <td>Third-party gems</td>
+        <td>✅ Action Push Native (official)</td>
+        <td>No external dependencies</td>
+      </tr>
+      <tr>
+        <td><strong>iOS Support (APNs)</strong></td>
+        <td>Via gems</td>
+        <td>✅ Built-in</td>
+        <td>Native integration</td>
+      </tr>
+      <tr>
+        <td><strong>Android Support (FCM)</strong></td>
+        <td>Via gems</td>
+        <td>✅ Built-in</td>
+        <td>Native integration</td>
+      </tr>
+      <tr>
+        <td><strong>Hotwire Native</strong></td>
+        <td>✅ Available</td>
+        <td>✅ Available + enhanced</td>
+        <td>Better mobile DX</td>
+      </tr>
+      <tr>
+        <td><strong>Offline Support</strong></td>
+        <td>Manual</td>
+        <td>✅ Turbo Offline</td>
+        <td>Offline-first apps</td>
+      </tr>
+    </tbody>
+  </table>
 
-            <h4>Setup Rails 8.1:</h4>
-            <pre>bundle add action_push_native
+  <h4>Setup Rails 8.1:</h4>
+  <pre>
+bundle add action_push_native
 bin/rails g action_push_native:install
-# Configure APNs and FCM credentials</pre>
+# Configure APNs and FCM credentials</pre
+  >
 
-            <h3>3. Testing & Development</h3>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Rails 8.0</th>
-                        <th>Rails 8.1</th>
-                        <th>Benefit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Local CI</strong></td>
-                        <td>❌ Not available</td>
-                        <td>✅ Built-in CI DSL</td>
-                        <td>Faster feedback loops</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Test Configuration</strong></td>
-                        <td>Manual setup</td>
-                        <td>config/ci.rb DSL</td>
-                        <td>Consistent testing</td>
-                    </tr>
-                    <tr>
-                        <td><strong>CI Execution</strong></td>
-                        <td>External only</td>
-                        <td>bin/ci command</td>
-                        <td>Local CI runs</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Test Parallelization</strong></td>
-                        <td>✅ Available</td>
-                        <td>✅ Available + enhanced</td>
-                        <td>Better performance</td>
-                    </tr>
-                </tbody>
-            </table>
+  <h3>3. Testing & Development</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Rails 8.0</th>
+        <th>Rails 8.1</th>
+        <th>Benefit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Local CI</strong></td>
+        <td>❌ Not available</td>
+        <td>✅ Built-in CI DSL</td>
+        <td>Faster feedback loops</td>
+      </tr>
+      <tr>
+        <td><strong>Test Configuration</strong></td>
+        <td>Manual setup</td>
+        <td>config/ci.rb DSL</td>
+        <td>Consistent testing</td>
+      </tr>
+      <tr>
+        <td><strong>CI Execution</strong></td>
+        <td>External only</td>
+        <td>bin/ci command</td>
+        <td>Local CI runs</td>
+      </tr>
+      <tr>
+        <td><strong>Test Parallelization</strong></td>
+        <td>✅ Available</td>
+        <td>✅ Available + enhanced</td>
+        <td>Better performance</td>
+      </tr>
+    </tbody>
+  </table>
 
-            <h4>Configuration Rails 8.1:</h4>
-            <pre># config/ci.rb
+  <h4>Configuration Rails 8.1:</h4>
+  <pre>
+# config/ci.rb
 ci do
   test :units
   test :integration
   lint
   security_scan
-end</pre>
+end</pre
+  >
 
-            <h3>4. Multi-Tenancy</h3>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Rails 8.0</th>
-                        <th>Rails 8.1</th>
-                        <th>Benefit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Multi-Tenant Support</strong></td>
-                        <td>Manual (gems like acts_as_tenant)</td>
-                        <td>✅ Active Record Tenanting</td>
-                        <td>Built-in framework support</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Tenant Isolation</strong></td>
-                        <td>Manual scoping</td>
-                        <td>✅ Automatic</td>
-                        <td>Data security by default</td>
-                    </tr>
-                    <tr>
-                        <td><strong>API Complexity</strong></td>
-                        <td>Custom implementation</td>
-                        <td>Single-tenant code style</td>
-                        <td>Simplified development</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Tenant Resolver</strong></td>
-                        <td>Custom middleware</td>
-                        <td>✅ Built-in</td>
-                        <td>Convention over config</td>
-                    </tr>
-                </tbody>
-            </table>
+  <h3>4. Multi-Tenancy</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Rails 8.0</th>
+        <th>Rails 8.1</th>
+        <th>Benefit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Multi-Tenant Support</strong></td>
+        <td>Manual (gems like acts_as_tenant)</td>
+        <td>✅ Active Record Tenanting</td>
+        <td>Built-in framework support</td>
+      </tr>
+      <tr>
+        <td><strong>Tenant Isolation</strong></td>
+        <td>Manual scoping</td>
+        <td>✅ Automatic</td>
+        <td>Data security by default</td>
+      </tr>
+      <tr>
+        <td><strong>API Complexity</strong></td>
+        <td>Custom implementation</td>
+        <td>Single-tenant code style</td>
+        <td>Simplified development</td>
+      </tr>
+      <tr>
+        <td><strong>Tenant Resolver</strong></td>
+        <td>Custom middleware</td>
+        <td>✅ Built-in</td>
+        <td>Convention over config</td>
+      </tr>
+    </tbody>
+  </table>
 
-            <h4>Rails 8.1 Approach:</h4>
-            <pre># Write single-tenant code, framework handles multi-tenancy
+  <h4>Rails 8.1 Approach:</h4>
+  <pre>
+# Write single-tenant code, framework handles multi-tenancy
 class Post < ApplicationRecord
   belongs_to :user
   # Automatically scoped to current tenant
-end</pre>
+end</pre
+  >
 
-            <h3>5. Observability & Monitoring</h3>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Rails 8.0</th>
-                        <th>Rails 8.1</th>
-                        <th>Benefit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Event System</strong></td>
-                        <td>ActiveSupport::Notifications</td>
-                        <td>✅ Structured Event Reporting</td>
-                        <td>Machine-readable events</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Event Format</strong></td>
-                        <td>Human-readable logs</td>
-                        <td>✅ JSON-structured</td>
-                        <td>Better post-processing</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Event Tagging</strong></td>
-                        <td>Manual</td>
-                        <td>✅ Built-in tagging</td>
-                        <td>Filtered monitoring</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Context Management</strong></td>
-                        <td>Manual</td>
-                        <td>✅ Global context</td>
-                        <td>Unified event context</td>
-                    </tr>
-                </tbody>
-            </table>
+  <h3>5. Observability & Monitoring</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Rails 8.0</th>
+        <th>Rails 8.1</th>
+        <th>Benefit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Event System</strong></td>
+        <td>ActiveSupport::Notifications</td>
+        <td>✅ Structured Event Reporting</td>
+        <td>Machine-readable events</td>
+      </tr>
+      <tr>
+        <td><strong>Event Format</strong></td>
+        <td>Human-readable logs</td>
+        <td>✅ JSON-structured</td>
+        <td>Better post-processing</td>
+      </tr>
+      <tr>
+        <td><strong>Event Tagging</strong></td>
+        <td>Manual</td>
+        <td>✅ Built-in tagging</td>
+        <td>Filtered monitoring</td>
+      </tr>
+      <tr>
+        <td><strong>Context Management</strong></td>
+        <td>Manual</td>
+        <td>✅ Global context</td>
+        <td>Unified event context</td>
+      </tr>
+    </tbody>
+  </table>
 
-            <h4>Rails 8.1 Events:</h4>
-            <pre># Emit structured events
+  <h4>Rails 8.1 Events:</h4>
+  <pre>
+# Emit structured events
 Rails.event.notify("user.signup", user_id: 123, email: "user@example.com")
 
 # Tag events
 Rails.event.tagged("graphql") { ... }
 
 # Set context
-Rails.event.set_context(request_id: "abc123")</pre>
+Rails.event.set_context(request_id: "abc123")</pre
+  >
 
-            <h3>6. Content Management</h3>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Rails 8.0</th>
-                        <th>Rails 8.1</th>
-                        <th>Benefit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>ActionText Editor</strong></td>
-                        <td>Trix (default)</td>
-                        <td>✅ Lexxy (expected new default)</td>
-                        <td>Modern editing experience</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Markdown Rendering</strong></td>
-                        <td>Manual</td>
-                        <td>✅ Simplified native support</td>
-                        <td>Easier content formatting</td>
-                    </tr>
-                    <tr>
-                        <td><strong>PDF Preview</strong></td>
-                        <td>Manual/gems</td>
-                        <td>✅ Built-in (Lexxy)</td>
-                        <td>Rich media handling</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Code Highlighting</strong></td>
-                        <td>Manual</td>
-                        <td>✅ Real-time (Lexxy)</td>
-                        <td>Better developer content</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+  <h3>6. Content Management</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Rails 8.0</th>
+        <th>Rails 8.1</th>
+        <th>Benefit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>ActionText Editor</strong></td>
+        <td>Trix (default)</td>
+        <td>✅ Lexxy (expected new default)</td>
+        <td>Modern editing experience</td>
+      </tr>
+      <tr>
+        <td><strong>Markdown Rendering</strong></td>
+        <td>Manual</td>
+        <td>✅ Simplified native support</td>
+        <td>Easier content formatting</td>
+      </tr>
+      <tr>
+        <td><strong>PDF Preview</strong></td>
+        <td>Manual/gems</td>
+        <td>✅ Built-in (Lexxy)</td>
+        <td>Rich media handling</td>
+      </tr>
+      <tr>
+        <td><strong>Code Highlighting</strong></td>
+        <td>Manual</td>
+        <td>✅ Real-time (Lexxy)</td>
+        <td>Better developer content</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
 
-        <section>
-            <h2>⚠️ Breaking Changes</h2>
+<section>
+  <h2>⚠️ Breaking Changes</h2>
 
-            <h3>Removed Features</h3>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Rails 8.0 Status</th>
-                        <th>Rails 8.1 Status</th>
-                        <th>Migration Path</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>SQLite3 :retries option</strong></td>
-                        <td>⚠️ Deprecated</td>
-                        <td>❌ Removed</td>
-                        <td>Remove from configurations</td>
-                    </tr>
-                    <tr>
-                        <td><strong>MySQL unsigned_float/decimal</strong></td>
-                        <td>⚠️ Deprecated</td>
-                        <td>❌ Removed</td>
-                        <td>Use standard numeric types</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Azure Storage (:azure)</strong></td>
-                        <td>⚠️ Deprecated</td>
-                        <td>❌ Removed</td>
-                        <td>Switch to :azure_storage_service</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Leading brackets in params</strong></td>
-                        <td>⚠️ Deprecated</td>
-                        <td>❌ Removed</td>
-                        <td>Update parameter parsing</td>
-                    </tr>
-                    <tr>
-                        <td><strong>enqueue_after_transaction_commit</strong></td>
-                        <td>⚠️ Deprecated options</td>
-                        <td>❌ Removed</td>
-                        <td>Update job configurations</td>
-                    </tr>
-                </tbody>
-            </table>
+  <h3>Removed Features</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Rails 8.0 Status</th>
+        <th>Rails 8.1 Status</th>
+        <th>Migration Path</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>SQLite3 :retries option</strong></td>
+        <td>⚠️ Deprecated</td>
+        <td>❌ Removed</td>
+        <td>Remove from configurations</td>
+      </tr>
+      <tr>
+        <td><strong>MySQL unsigned_float/decimal</strong></td>
+        <td>⚠️ Deprecated</td>
+        <td>❌ Removed</td>
+        <td>Use standard numeric types</td>
+      </tr>
+      <tr>
+        <td><strong>Azure Storage (:azure)</strong></td>
+        <td>⚠️ Deprecated</td>
+        <td>❌ Removed</td>
+        <td>Switch to :azure_storage_service</td>
+      </tr>
+      <tr>
+        <td><strong>Leading brackets in params</strong></td>
+        <td>⚠️ Deprecated</td>
+        <td>❌ Removed</td>
+        <td>Update parameter parsing</td>
+      </tr>
+      <tr>
+        <td><strong>enqueue_after_transaction_commit</strong></td>
+        <td>⚠️ Deprecated options</td>
+        <td>❌ Removed</td>
+        <td>Update job configurations</td>
+      </tr>
+    </tbody>
+  </table>
 
-            <h3>Changed Behavior</h3>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Rails 8.0 Behavior</th>
-                        <th>Rails 8.1 Behavior</th>
-                        <th>Impact</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>schema.rb column order</strong></td>
-                        <td>Insertion order</td>
-                        <td>✅ Alphabetical</td>
-                        <td>Version control changes</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Action Dispatch params</strong></td>
-                        <td>Skip leading brackets</td>
-                        <td>Standard parsing</td>
-                        <td>May break custom param handling</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+  <h3>Changed Behavior</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Rails 8.0 Behavior</th>
+        <th>Rails 8.1 Behavior</th>
+        <th>Impact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>schema.rb column order</strong></td>
+        <td>Insertion order</td>
+        <td>✅ Alphabetical</td>
+        <td>Version control changes</td>
+      </tr>
+      <tr>
+        <td><strong>Action Dispatch params</strong></td>
+        <td>Skip leading brackets</td>
+        <td>Standard parsing</td>
+        <td>May break custom param handling</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
 
-        <section>
-            <h2>💰 Cost Impact Analysis</h2>
+<section>
+  <h2>💰 Cost Impact Analysis</h2>
 
-            <h3>Infrastructure Costs</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Rails 8.0</th>
-                        <th>Rails 8.1</th>
-                        <th>Savings</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Push Notifications</strong></td>
-                        <td>Third-party service costs</td>
-                        <td>Direct APNs/FCM (no service fees)</td>
-                        <td>Variable by usage</td>
-                    </tr>
-                    <tr>
-                        <td><strong>CI Pipeline</strong></td>
-                        <td>Standard costs</td>
-                        <td>15-25% reduction (local CI)</td>
-                        <td>15-25% reduction</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Failed Job Re-processing</strong></td>
-                        <td>Standard costs</td>
-                        <td>50% reduction (continuations)</td>
-                        <td>Variable</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Monitoring/Observability</strong></td>
-                        <td>Standard costs</td>
-                        <td>Better value (structured events)</td>
-                        <td>Improved ROI</td>
-                    </tr>
-                </tbody>
-            </table>
+  <h3>Infrastructure Costs</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Rails 8.0</th>
+        <th>Rails 8.1</th>
+        <th>Savings</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Push Notifications</strong></td>
+        <td>Third-party service costs</td>
+        <td>Direct APNs/FCM (no service fees)</td>
+        <td>Variable by usage</td>
+      </tr>
+      <tr>
+        <td><strong>CI Pipeline</strong></td>
+        <td>Standard costs</td>
+        <td>15-25% reduction (local CI)</td>
+        <td>15-25% reduction</td>
+      </tr>
+      <tr>
+        <td><strong>Failed Job Re-processing</strong></td>
+        <td>Standard costs</td>
+        <td>50% reduction (continuations)</td>
+        <td>Variable</td>
+      </tr>
+      <tr>
+        <td><strong>Monitoring/Observability</strong></td>
+        <td>Standard costs</td>
+        <td>Better value (structured events)</td>
+        <td>Improved ROI</td>
+      </tr>
+    </tbody>
+  </table>
 
-            <h3>Development Efficiency</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Metric</th>
-                        <th>Rails 8.0</th>
-                        <th>Rails 8.1</th>
-                        <th>Improvement</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>CI Feedback Time</strong></td>
-                        <td>5-10 min</td>
-                        <td>2-5 min (local)</td>
-                        <td>50-60% faster</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Job Failure Recovery</strong></td>
-                        <td>Full restart</td>
-                        <td>Resume from checkpoint</td>
-                        <td>70% faster</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Debugging Time</strong></td>
-                        <td>Standard</td>
-                        <td>40% faster (structured events)</td>
-                        <td>Significant</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Multi-tenant Development</strong></td>
-                        <td>Complex</td>
-                        <td>Simple (built-in)</td>
-                        <td>60% faster</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+  <h3>Development Efficiency</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>Rails 8.0</th>
+        <th>Rails 8.1</th>
+        <th>Improvement</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>CI Feedback Time</strong></td>
+        <td>5-10 min</td>
+        <td>2-5 min (local)</td>
+        <td>50-60% faster</td>
+      </tr>
+      <tr>
+        <td><strong>Job Failure Recovery</strong></td>
+        <td>Full restart</td>
+        <td>Resume from checkpoint</td>
+        <td>70% faster</td>
+      </tr>
+      <tr>
+        <td><strong>Debugging Time</strong></td>
+        <td>Standard</td>
+        <td>40% faster (structured events)</td>
+        <td>Significant</td>
+      </tr>
+      <tr>
+        <td><strong>Multi-tenant Development</strong></td>
+        <td>Complex</td>
+        <td>Simple (built-in)</td>
+        <td>60% faster</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
 
-        <section>
-            <h2>🎯 Feature Adoption Priority Matrix</h2>
+<section>
+  <h2>🎯 Feature Adoption Priority Matrix</h2>
 
-            <h3>High Priority (Immediate Value)</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Complexity</th>
-                        <th>Value</th>
-                        <th>ROI</th>
-                        <th>Adopt When</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Local CI</strong></td>
-                        <td>🟢 Low</td>
-                        <td>🟢 High</td>
-                        <td>Immediate</td>
-                        <td>Immediate</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Structured Events</strong></td>
-                        <td>🟢 Low</td>
-                        <td>🟢 High</td>
-                        <td>Immediate</td>
-                        <td>Immediate</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Markdown Rendering</strong></td>
-                        <td>🟢 Low</td>
-                        <td>🟡 Medium</td>
-                        <td>Quick</td>
-                        <td>As needed</td>
-                    </tr>
-                </tbody>
-            </table>
+  <h3>High Priority (Immediate Value)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Complexity</th>
+        <th>Value</th>
+        <th>ROI</th>
+        <th>Adopt When</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Local CI</strong></td>
+        <td>🟢 Low</td>
+        <td>🟢 High</td>
+        <td>Immediate</td>
+        <td>Immediate</td>
+      </tr>
+      <tr>
+        <td><strong>Structured Events</strong></td>
+        <td>🟢 Low</td>
+        <td>🟢 High</td>
+        <td>Immediate</td>
+        <td>Immediate</td>
+      </tr>
+      <tr>
+        <td><strong>Markdown Rendering</strong></td>
+        <td>🟢 Low</td>
+        <td>🟡 Medium</td>
+        <td>Quick</td>
+        <td>As needed</td>
+      </tr>
+    </tbody>
+  </table>
 
-            <h3>Medium Priority (Phased Rollout)</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Complexity</th>
-                        <th>Value</th>
-                        <th>ROI</th>
-                        <th>Adopt When</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Job Continuations</strong></td>
-                        <td>🟡 Medium</td>
-                        <td>🟢 High</td>
-                        <td>Medium-term</td>
-                        <td>Short-term</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Lexxy Editor</strong></td>
-                        <td>🟡 Medium</td>
-                        <td>🟡 Medium</td>
-                        <td>Medium-term</td>
-                        <td>Phased rollout</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Action Push</strong></td>
-                        <td>🟡 Medium</td>
-                        <td>🟢 High (if mobile)</td>
-                        <td>Medium-term</td>
-                        <td>Phased rollout</td>
-                    </tr>
-                </tbody>
-            </table>
+  <h3>Medium Priority (Phased Rollout)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Complexity</th>
+        <th>Value</th>
+        <th>ROI</th>
+        <th>Adopt When</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Job Continuations</strong></td>
+        <td>🟡 Medium</td>
+        <td>🟢 High</td>
+        <td>Medium-term</td>
+        <td>Short-term</td>
+      </tr>
+      <tr>
+        <td><strong>Lexxy Editor</strong></td>
+        <td>🟡 Medium</td>
+        <td>🟡 Medium</td>
+        <td>Medium-term</td>
+        <td>Phased rollout</td>
+      </tr>
+      <tr>
+        <td><strong>Action Push</strong></td>
+        <td>🟡 Medium</td>
+        <td>🟢 High (if mobile)</td>
+        <td>Medium-term</td>
+        <td>Phased rollout</td>
+      </tr>
+    </tbody>
+  </table>
 
-            <h3>Strategic Priority (Long-term)</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th>Complexity</th>
-                        <th>Value</th>
-                        <th>ROI</th>
-                        <th>Adopt When</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Active Record Tenanting</strong></td>
-                        <td>🔴 High</td>
-                        <td>🟢 High (SaaS)</td>
-                        <td>12+ months</td>
-                        <td>Quarter 2-3</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Turbo Offline</strong></td>
-                        <td>🔴 High</td>
-                        <td>🟢 High (if needed)</td>
-                        <td>12+ months</td>
-                        <td>Quarter 2-3</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+  <h3>Strategic Priority (Long-term)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Complexity</th>
+        <th>Value</th>
+        <th>ROI</th>
+        <th>Adopt When</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Active Record Tenanting</strong></td>
+        <td>🔴 High</td>
+        <td>🟢 High (SaaS)</td>
+        <td>12+ months</td>
+        <td>Quarter 2-3</td>
+      </tr>
+      <tr>
+        <td><strong>Turbo Offline</strong></td>
+        <td>🔴 High</td>
+        <td>🟢 High (if needed)</td>
+        <td>12+ months</td>
+        <td>Quarter 2-3</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
 
-        <section>
-            <h2>🔍 Decision Framework</h2>
+<section>
+  <h2>🔍 Decision Framework</h2>
 
-            <h3>Should You Upgrade to Rails 8.1?</h3>
+  <h3>Should You Upgrade to Rails 8.1?</h3>
 
-            <div class="action-box">
-                <h4>YES, if you:</h4>
-                <ul>
-                    <li>✅ Have stable Rails 8.0 installation with good test coverage</li>
-                    <li>✅ Need resumable background job processing</li>
-                    <li>✅ Want to build or enhance mobile applications</li>
-                    <li>✅ Require multi-tenant architecture</li>
-                    <li>✅ Want improved developer productivity (local CI)</li>
-                    <li>✅ Need better observability and monitoring</li>
-                </ul>
-            </div>
+  <div class="action-box">
+    <h4>YES, if you:</h4>
+    <ul>
+      <li>✅ Have stable Rails 8.0 installation with good test coverage</li>
+      <li>✅ Need resumable background job processing</li>
+      <li>✅ Want to build or enhance mobile applications</li>
+      <li>✅ Require multi-tenant architecture</li>
+      <li>✅ Want improved developer productivity (local CI)</li>
+      <li>✅ Need better observability and monitoring</li>
+    </ul>
+  </div>
 
-            <div class="warning-box">
-                <h4>WAIT, if you:</h4>
-                <ul>
-                    <li>⏸️ Just upgraded to Rails 8.0 recently (< 3 months)</li>
-                    <li>⏸️ Have limited test coverage (< 60%)</li>
-                    <li>⏸️ Using many outdated/incompatible gems</li>
-                    <li>⏸️ In middle of major feature development</li>
-                    <li>⏸️ Prefer to wait for Rails 8.1 stable release</li>
-                </ul>
-            </div>
+  <div class="warning-box">
+    <h4>WAIT, if you:</h4>
+    <ul>
+      <li>⏸️ Just upgraded to Rails 8.0 recently (< 3 months)</li>
+      <li>⏸️ Have limited test coverage (< 60%)</li>
+      <li>⏸️ Using many outdated/incompatible gems</li>
+      <li>⏸️ In middle of major feature development</li>
+      <li>⏸️ Prefer to wait for Rails 8.1 stable release</li>
+    </ul>
+  </div>
 
-            <div class="info-box">
-                <h4>CONSIDER ALTERNATIVES, if you:</h4>
-                <ul>
-                    <li>❌ Still on Rails 7.x (upgrade to 8.0 first)</li>
-                    <li>❌ Have major technical debt to address</li>
-                    <li>❌ Lack resources for proper testing and migration</li>
-                </ul>
-            </div>
-        </section>
+  <div class="info-box">
+    <h4>CONSIDER ALTERNATIVES, if you:</h4>
+    <ul>
+      <li>❌ Still on Rails 7.x (upgrade to 8.0 first)</li>
+      <li>❌ Have major technical debt to address</li>
+      <li>❌ Lack resources for proper testing and migration</li>
+    </ul>
+  </div>
+</section>
 
-        <section>
-            <h2>📋 Quick Reference Checklist</h2>
+<section>
+  <h2>📋 Quick Reference Checklist</h2>
 
-            <h3>Pre-Upgrade Questions</h3>
-            <ul class="checklist">
-                <li>Is your test coverage >80%?</li>
-                <li>Are all gems compatible with Rails 8.1?</li>
-                <li>Have you reviewed all breaking changes?</li>
-                <li>Do you have a rollback plan?</li>
-                <li>Is your team trained on Rails 8.1 features?</li>
-            </ul>
+  <h3>Pre-Upgrade Questions</h3>
+  <ul class="checklist">
+    <li>Is your test coverage >80%?</li>
+    <li>Are all gems compatible with Rails 8.1?</li>
+    <li>Have you reviewed all breaking changes?</li>
+    <li>Do you have a rollback plan?</li>
+    <li>Is your team trained on Rails 8.1 features?</li>
+  </ul>
 
-            <h3>Value Assessment Questions</h3>
-            <ul class="checklist">
-                <li>Do you have long-running background jobs? → <strong>Job Continuations</strong></li>
-                <li>Do you need mobile push notifications? → <strong>Action Push Native</strong></li>
-                <li>Are you building SaaS/multi-tenant apps? → <strong>Active Record Tenanting</strong></li>
-                <li>Do you need better observability? → <strong>Structured Events</strong></li>
-                <li>Want faster developer feedback? → <strong>Local CI</strong></li>
-                <li>Need offline mobile apps? → <strong>Turbo Offline</strong></li>
-            </ul>
+  <h3>Value Assessment Questions</h3>
+  <ul class="checklist">
+    <li>
+      Do you have long-running background jobs? →
+      <strong>Job Continuations</strong>
+    </li>
+    <li>
+      Do you need mobile push notifications? →
+      <strong>Action Push Native</strong>
+    </li>
+    <li>
+      Are you building SaaS/multi-tenant apps? →
+      <strong>Active Record Tenanting</strong>
+    </li>
+    <li>
+      Do you need better observability? → <strong>Structured Events</strong>
+    </li>
+    <li>Want faster developer feedback? → <strong>Local CI</strong></li>
+    <li>Need offline mobile apps? → <strong>Turbo Offline</strong></li>
+  </ul>
 
-            <h3>Risk Assessment Questions</h3>
-            <ul class="checklist">
-                <li>What's your rollback strategy?</li>
-                <li>How long can you afford downtime?</li>
-                <li>What's your monitoring coverage?</li>
-                <li>Do you have staging environment?</li>
-                <li>Is your team comfortable with Rails upgrades?</li>
-            </ul>
-        </section>
+  <h3>Risk Assessment Questions</h3>
+  <ul class="checklist">
+    <li>What's your rollback strategy?</li>
+    <li>How long can you afford downtime?</li>
+    <li>What's your monitoring coverage?</li>
+    <li>Do you have staging environment?</li>
+    <li>Is your team comfortable with Rails upgrades?</li>
+  </ul>
+</section>
 
-        <section>
-            <h2>📞 Next Steps</h2>
+<section>
+  <h2>📞 Next Steps</h2>
 
-            <h3>For Teams Using Rails 8.0</h3>
+  <h3>For Teams Using Rails 8.0</h3>
 
-            <h4>Immediate Actions:</h4>
-            <ol>
-                <li>Review this comparison document with technical team</li>
-                <li>Assess breaking changes impact on your codebase</li>
-                <li>Check gem compatibility for Rails 8.1</li>
-                <li>Identify which new features align with roadmap</li>
-            </ol>
+  <h4>Immediate Actions:</h4>
+  <ol>
+    <li>Review this comparison document with technical team</li>
+    <li>Assess breaking changes impact on your codebase</li>
+    <li>Check gem compatibility for Rails 8.1</li>
+    <li>Identify which new features align with roadmap</li>
+  </ol>
 
-            <h4>Short-Term Actions:</h4>
-            <ol>
-                <li>Create detailed migration plan</li>
-                <li>Set up Rails 8.1 in development environment</li>
-                <li>Begin testing compatibility</li>
-                <li>Plan feature adoption strategy</li>
-            </ol>
+  <h4>Short-Term Actions:</h4>
+  <ol>
+    <li>Create detailed migration plan</li>
+    <li>Set up Rails 8.1 in development environment</li>
+    <li>Begin testing compatibility</li>
+    <li>Plan feature adoption strategy</li>
+  </ol>
 
-            <h4>Medium-Term Actions:</h4>
-            <ol>
-                <li>Complete staging environment testing</li>
-                <li>Plan production deployment</li>
-                <li>Schedule team training</li>
-                <li>Implement quick-win features (Local CI, Structured Events)</li>
-            </ol>
+  <h4>Medium-Term Actions:</h4>
+  <ol>
+    <li>Complete staging environment testing</li>
+    <li>Plan production deployment</li>
+    <li>Schedule team training</li>
+    <li>Implement quick-win features (Local CI, Structured Events)</li>
+  </ol>
 
-            <h4>Long-term:</h4>
-            <ol>
-                <li>Production deployment</li>
-                <li>Progressive feature adoption</li>
-                <li>Performance optimization</li>
-                <li>ROI measurement and reporting</li>
-            </ol>
-        </section>
+  <h4>Long-term:</h4>
+  <ol>
+    <li>Production deployment</li>
+    <li>Progressive feature adoption</li>
+    <li>Performance optimization</li>
+    <li>ROI measurement and reporting</li>
+  </ol>
+</section>
 
-        <section>
-            <h2>📚 Additional Resources</h2>
+<section>
+  <h2>📚 Additional Resources</h2>
 
-            <h3>Official Rails Documentation:</h3>
-            <ul>
-                <li><a href="https://edgeguides.rubyonrails.org/8_1_release_notes.html" target="_blank">Rails 8.1 Release Notes</a></li>
-                <li><a href="https://guides.rubyonrails.org/8_0_release_notes.html" target="_blank">Rails 8.0 Release Notes</a></li>
-                <li><a href="https://guides.rubyonrails.org/upgrading_ruby_on_rails.html" target="_blank">Upgrading Guide</a></li>
-            </ul>
+  <h3>Official Rails Documentation:</h3>
+  <ul>
+    <li>
+      <a
+        href="https://edgeguides.rubyonrails.org/8_1_release_notes.html"
+        target="_blank"
+        >Rails 8.1 Release Notes</a
+      >
+    </li>
+    <li>
+      <a
+        href="https://guides.rubyonrails.org/8_0_release_notes.html"
+        target="_blank"
+        >Rails 8.0 Release Notes</a
+      >
+    </li>
+    <li>
+      <a
+        href="https://guides.rubyonrails.org/upgrading_ruby_on_rails.html"
+        target="_blank"
+        >Upgrading Guide</a
+      >
+    </li>
+  </ul>
 
-            <h3>Community Resources:</h3>
-            <ul>
-                <li><a href="https://discuss.rubyonrails.org" target="_blank">Rails Upgrade Forum</a></li>
-                <li><a href="https://github.com/rails/rails/issues" target="_blank">Rails GitHub Issues</a></li>
-                <li><a href="https://www.youtube.com/@RailsWorld" target="_blank">RailsWorld 2025 Talks</a></li>
-            </ul>
+  <h3>Community Resources:</h3>
+  <ul>
+    <li>
+      <a href="https://discuss.rubyonrails.org" target="_blank"
+        >Rails Upgrade Forum</a
+      >
+    </li>
+    <li>
+      <a href="https://github.com/rails/rails/issues" target="_blank"
+        >Rails GitHub Issues</a
+      >
+    </li>
+    <li>
+      <a href="https://www.youtube.com/@RailsWorld" target="_blank"
+        >RailsWorld 2025 Talks</a
+      >
+    </li>
+  </ul>
 
-            <h3>Related Tools:</h3>
-            <ul>
-                <li><a href="https://github.com/rails/action_push_native" target="_blank">Action Push Native</a></li>
-                <li><a href="https://github.com/hotwired/hotwire-native-ios" target="_blank">Hotwire Native</a></li>
-                <li><a href="https://github.com/rails/solid_queue" target="_blank">Solid Queue</a></li>
-            </ul>
-        </section>
+  <h3>Related Tools:</h3>
+  <ul>
+    <li>
+      <a href="https://github.com/rails/action_push_native" target="_blank"
+        >Action Push Native</a
+      >
+    </li>
+    <li>
+      <a href="https://github.com/hotwired/hotwire-native-ios" target="_blank"
+        >Hotwire Native</a
+      >
+    </li>
+    <li>
+      <a href="https://github.com/rails/solid_queue" target="_blank"
+        >Solid Queue</a
+      >
+    </li>
+  </ul>
+</section>
 
-        <div class="warning-box">
-            <p><em>This comparison is based on Rails 8.1 Beta 1. Features and details may change in the final stable release.</em></p>
-        </div>
+<div class="warning-box">
+  <p>
+    <em
+      >This comparison is based on Rails 8.1 Beta 1. Features and details may
+      change in the final stable release.</em
+    >
+  </p>
+</div>
 
-        <a href="Rails_8.1_Documentation_Index.html" class="back-link">← Back to Documentation Index</a>
+<a href="index.html" class="back-link">← Back to Documentation Index</a>
 
 {% include "footer.html" %}

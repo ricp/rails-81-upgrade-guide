@@ -2,64 +2,83 @@
 title: Rails 8.1 Upgrade Report
 pageTitle: Rails 8.1 Upgrade Report
 subtitle: What's Coming for Your Application
-backLink: Rails_8.1_Documentation_Index.html
+backLink: index.html
 metaInfo: "<p><strong>Report Date:</strong> October 5, 2025</p><p><strong>Current Version:</strong> Rails 8.0</p><p><strong>Target Version:</strong> Rails 8.1 (Beta 1 Released September 2025)</p><p><strong>Contributors:</strong> 500+ developers, 2,500+ commits</p>"
-footerText: "<p><strong>Report Date:</strong> October 5, 2025</p><p><strong>Version:</strong> 1.0 (Comprehensive Analysis)</p><p style=\"margin-top: 20px; color: #999;\">Part of the Rails 8.1 Upgrade Documentation Suite</p>"
+footerText: '<p><strong>Report Date:</strong> October 5, 2025</p><p><strong>Version:</strong> 1.0 (Comprehensive Analysis)</p><p style="margin-top: 20px; color: #999;">Part of the Rails 8.1 Upgrade Documentation Suite</p>'
 permalink: Rails_8.1_Upgrade_Report.html
 ---
+
 {% include "header.html" %}
 
-        <section>
-            <h2>📋 Executive Summary</h2>
-            <p>Rails 8.1 represents a significant evolution in the Rails framework, introducing powerful new capabilities for job management, developer productivity, mobile applications, and multi-tenancy. This release continues Rails' mission to "compress the complexity of modern web apps" while maintaining backward compatibility with Rails 8.0.</p>
+<section>
+  <h2>📋 Executive Summary</h2>
+  <p>
+    Rails 8.1 represents a significant evolution in the Rails framework,
+    introducing powerful new capabilities for job management, developer
+    productivity, mobile applications, and multi-tenancy. This release continues
+    Rails' mission to "compress the complexity of modern web apps" while
+    maintaining backward compatibility with Rails 8.0.
+  </p>
 
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <h4>🧪 Local CI Integration</h4>
-                    <p>Run tests locally with CI config - 50-60% faster feedback, 15-25% CI cost reduction</p>
-                </div>
-                <div class="feature-item">
-                    <h4>📱 Native Mobile Framework</h4>
-                    <p>Hotwire Native + Turbo Offline for web & mobile</p>
-                </div>
-                <div class="feature-item">
-                    <h4>📱 Action Push Native</h4>
-                    <p>Official iOS/Android push notifications (10M+/day at 37signals)</p>
-                </div>
-                <div class="feature-item">
-                    <h4>🔄 Active Job Continuations</h4>
-                    <p>Resilient, resumable background jobs</p>
-                </div>
-                <div class="feature-item">
-                    <h4>🏢 Active Record Tenanting</h4>
-                    <p>First-class multi-tenancy support</p>
-                </div>
-                <div class="feature-item">
-                    <h4>📊 Structured Event Reporting</h4>
-                    <p>Enhanced observability and logging</p>
-                </div>
-            </div>
-        </section>
+  <div class="feature-grid">
+    <div class="feature-item">
+      <h4>🧪 Local CI Integration</h4>
+      <p>
+        Run tests locally with CI config - 50-60% faster feedback, 15-25% CI
+        cost reduction
+      </p>
+    </div>
+    <div class="feature-item">
+      <h4>📱 Native Mobile Framework</h4>
+      <p>Hotwire Native + Turbo Offline for web & mobile</p>
+    </div>
+    <div class="feature-item">
+      <h4>📱 Action Push Native</h4>
+      <p>Official iOS/Android push notifications (10M+/day at 37signals)</p>
+    </div>
+    <div class="feature-item">
+      <h4>🔄 Active Job Continuations</h4>
+      <p>Resilient, resumable background jobs</p>
+    </div>
+    <div class="feature-item">
+      <h4>🏢 Active Record Tenanting</h4>
+      <p>First-class multi-tenancy support</p>
+    </div>
+    <div class="feature-item">
+      <h4>📊 Structured Event Reporting</h4>
+      <p>Enhanced observability and logging</p>
+    </div>
+  </div>
+</section>
 
-        <section>
-            <h2>🚀 Major New Features</h2>
+<section>
+  <h2>🚀 Major New Features</h2>
 
-            <h3>1. Active Job Continuations</h3>
-            <div class="info-box">
-                <p><strong>Impact: High</strong> | <strong>Led by:</strong> Donal McBreen (37signals)</p>
-            </div>
-            <p>Transform long-running jobs into resilient, resumable processes that can survive deployments and restarts.</p>
+  <h3>1. Active Job Continuations</h3>
+  <div class="info-box">
+    <p>
+      <strong>Impact: High</strong> | <strong>Led by:</strong> Donal McBreen
+      (37signals)
+    </p>
+  </div>
+  <p>
+    Transform long-running jobs into resilient, resumable processes that can
+    survive deployments and restarts.
+  </p>
 
-            <h4>What it does:</h4>
-            <ul>
-                <li>Breaks jobs into discrete steps with defined checkpoints</li>
-                <li>Resumes execution from last completed step after interruption</li>
-                <li>Particularly valuable for Kamal deployments (30-second shutdown windows)</li>
-                <li>Uses cursor-based tracking for progress management</li>
-            </ul>
+  <h4>What it does:</h4>
+  <ul>
+    <li>Breaks jobs into discrete steps with defined checkpoints</li>
+    <li>Resumes execution from last completed step after interruption</li>
+    <li>
+      Particularly valuable for Kamal deployments (30-second shutdown windows)
+    </li>
+    <li>Uses cursor-based tracking for progress management</li>
+  </ul>
 
-            <h4>Example Use Case:</h4>
-            <pre>class DataMigrationJob < ApplicationJob
+  <h4>Example Use Case:</h4>
+  <pre>
+class DataMigrationJob < ApplicationJob
   include ActiveJob::Continuations
 
   def initialize(batch_size: 1000)
@@ -74,129 +93,160 @@ permalink: Rails_8.1_Upgrade_Report.html
   def finalize
     # Cleanup and completion tasks
   end
-end</pre>
+end</pre
+  >
 
-            <h4>Business Value:</h4>
-            <ul>
-                <li>Zero-downtime deployments with long-running background tasks</li>
-                <li>Reduced job failure costs (no need to restart from beginning)</li>
-                <li>Better resource utilization during maintenance windows</li>
-            </ul>
+  <h4>Business Value:</h4>
+  <ul>
+    <li>Zero-downtime deployments with long-running background tasks</li>
+    <li>Reduced job failure costs (no need to restart from beginning)</li>
+    <li>Better resource utilization during maintenance windows</li>
+  </ul>
 
-            <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
+  <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd" />
 
-            <h3>2. Local CI Integration</h3>
-            <div class="info-box">
-                <p><strong>Impact: High</strong> | <strong>Led by:</strong> Jeremy Daer (37signals)</p>
-            </div>
-            <p>Run your complete test suite locally with the same configuration as CI/CD environments.</p>
+  <h3>2. Local CI Integration</h3>
+  <div class="info-box">
+    <p>
+      <strong>Impact: High</strong> | <strong>Led by:</strong> Jeremy Daer
+      (37signals)
+    </p>
+  </div>
+  <p>
+    Run your complete test suite locally with the same configuration as CI/CD
+    environments.
+  </p>
 
-            <h4>What it does:</h4>
-            <ul>
-                <li>Provides default CI declaration DSL in <code>config/ci.rb</code></li>
-                <li>Executed via <code>bin/ci</code> command</li>
-                <li>Significant performance improvements demonstrated</li>
-                <li>Consistent testing between local and CI environments</li>
-            </ul>
+  <h4>What it does:</h4>
+  <ul>
+    <li>Provides default CI declaration DSL in <code>config/ci.rb</code></li>
+    <li>Executed via <code>bin/ci</code> command</li>
+    <li>Significant performance improvements demonstrated</li>
+    <li>Consistent testing between local and CI environments</li>
+  </ul>
 
-            <h4>Benefits:</h4>
-            <ul>
-                <li>Catch issues before pushing to CI pipeline</li>
-                <li>Faster feedback loops for developers</li>
-                <li>Reduced CI costs from failed builds</li>
-                <li>Standardized test execution across team</li>
-            </ul>
+  <h4>Benefits:</h4>
+  <ul>
+    <li>Catch issues before pushing to CI pipeline</li>
+    <li>Faster feedback loops for developers</li>
+    <li>Reduced CI costs from failed builds</li>
+    <li>Standardized test execution across team</li>
+  </ul>
 
-            <h4>Developer Experience:</h4>
-            <pre>$ bin/ci
+  <h4>Developer Experience:</h4>
+  <pre>
+$ bin/ci
 # Runs full test suite with CI configuration
-# Same environment, same results as GitHub Actions/CircleCI</pre>
+# Same environment, same results as GitHub Actions/CircleCI</pre
+  >
 
-            <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
+  <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd" />
 
-            <h3>3. Action Push Native (Mobile Push Notifications)</h3>
-            <div class="info-box">
-                <p><strong>Impact: High</strong> | <strong>Official Rails Project</strong></p>
-            </div>
-            <p>First-class support for sending push notifications to iOS and Android devices.</p>
+  <h3>3. Action Push Native (Mobile Push Notifications)</h3>
+  <div class="info-box">
+    <p>
+      <strong>Impact: High</strong> | <strong>Official Rails Project</strong>
+    </p>
+  </div>
+  <p>
+    First-class support for sending push notifications to iOS and Android
+    devices.
+  </p>
 
-            <h4>Platforms Supported:</h4>
-            <ul>
-                <li><strong>iOS:</strong> Apple Push Notification service (APNs)</li>
-                <li><strong>Android:</strong> Firebase Cloud Messaging (FCM)</li>
-            </ul>
+  <h4>Platforms Supported:</h4>
+  <ul>
+    <li><strong>iOS:</strong> Apple Push Notification service (APNs)</li>
+    <li><strong>Android:</strong> Firebase Cloud Messaging (FCM)</li>
+  </ul>
 
-            <h4>Setup:</h4>
-            <pre>bundle add action_push_native
+  <h4>Setup:</h4>
+  <pre>
+bundle add action_push_native
 bin/rails g action_push_native:install
 bin/rails action_push_native:install:migrations
-bin/rails db:migrate</pre>
+bin/rails db:migrate</pre
+  >
 
-            <h4>Configuration (config/push.yml):</h4>
-            <ul>
-                <li>Apple: token authentication (key_id, team_id, encryption_key, topic)</li>
-                <li>Google: Firebase service account credentials (project_id, encryption_key)</li>
-            </ul>
+  <h4>Configuration (config/push.yml):</h4>
+  <ul>
+    <li>
+      Apple: token authentication (key_id, team_id, encryption_key, topic)
+    </li>
+    <li>
+      Google: Firebase service account credentials (project_id, encryption_key)
+    </li>
+  </ul>
 
-            <h4>Business Value:</h4>
-            <ul>
-                <li>Native mobile engagement capabilities</li>
-                <li>No third-party service dependencies</li>
-                <li>Cost reduction (direct APNs/FCM integration)</li>
-                <li>Consistent notification delivery across platforms</li>
-            </ul>
+  <h4>Business Value:</h4>
+  <ul>
+    <li>Native mobile engagement capabilities</li>
+    <li>No third-party service dependencies</li>
+    <li>Cost reduction (direct APNs/FCM integration)</li>
+    <li>Consistent notification delivery across platforms</li>
+  </ul>
 
-            <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
+  <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd" />
 
-            <h3>4. Active Record Tenanting</h3>
-            <div class="info-box">
-                <p><strong>Impact: High</strong> | <strong>Multi-Tenant Architecture</strong></p>
-            </div>
-            <p>Build multi-tenant applications while writing code as if it were single-tenant.</p>
+  <h3>4. Active Record Tenanting</h3>
+  <div class="info-box">
+    <p>
+      <strong>Impact: High</strong> | <strong>Multi-Tenant Architecture</strong>
+    </p>
+  </div>
+  <p>
+    Build multi-tenant applications while writing code as if it were
+    single-tenant.
+  </p>
 
-            <h4>What it does:</h4>
-            <ul>
-                <li>Automatic tenant isolation at the database level</li>
-                <li>Tenant resolver extracts tenant information from requests</li>
-                <li>Convention-based approach (minimal configuration)</li>
-                <li>Seamless integration with existing Active Record patterns</li>
-            </ul>
+  <h4>What it does:</h4>
+  <ul>
+    <li>Automatic tenant isolation at the database level</li>
+    <li>Tenant resolver extracts tenant information from requests</li>
+    <li>Convention-based approach (minimal configuration)</li>
+    <li>Seamless integration with existing Active Record patterns</li>
+  </ul>
 
-            <h4>Architecture:</h4>
-            <pre># Write code as single-tenant
+  <h4>Architecture:</h4>
+  <pre>
+# Write code as single-tenant
 class Post < ApplicationRecord
   belongs_to :user
 end
 
 # Framework handles multi-tenancy automatically
-# Each tenant sees only their data</pre>
+# Each tenant sees only their data</pre
+  >
 
-            <h4>Business Value:</h4>
-            <ul>
-                <li>Simplified SaaS application development</li>
-                <li>Data isolation and security by default</li>
-                <li>Reduced development complexity</li>
-                <li>Scalable multi-customer architecture</li>
-            </ul>
+  <h4>Business Value:</h4>
+  <ul>
+    <li>Simplified SaaS application development</li>
+    <li>Data isolation and security by default</li>
+    <li>Reduced development complexity</li>
+    <li>Scalable multi-customer architecture</li>
+  </ul>
 
-            <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
+  <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd" />
 
-            <h3>5. Structured Event Reporting</h3>
-            <div class="info-box">
-                <p><strong>Impact: Medium</strong> | <strong>Led by:</strong> Adrianna Chang (Shopify)</p>
-            </div>
-            <p>Unified interface for producing structured, machine-readable events.</p>
+  <h3>5. Structured Event Reporting</h3>
+  <div class="info-box">
+    <p>
+      <strong>Impact: Medium</strong> | <strong>Led by:</strong> Adrianna Chang
+      (Shopify)
+    </p>
+  </div>
+  <p>Unified interface for producing structured, machine-readable events.</p>
 
-            <h4>What it does:</h4>
-            <ul>
-                <li>Complements existing <code>ActiveSupport::Notifications</code></li>
-                <li>JSON-structured events optimized for post-processing</li>
-                <li>Event tagging and context management</li>
-                <li>Flexible subscriber system</li>
-            </ul>
+  <h4>What it does:</h4>
+  <ul>
+    <li>Complements existing <code>ActiveSupport::Notifications</code></li>
+    <li>JSON-structured events optimized for post-processing</li>
+    <li>Event tagging and context management</li>
+    <li>Flexible subscriber system</li>
+  </ul>
 
-            <h4>Usage Examples:</h4>
-            <pre># Emit structured events
+  <h4>Usage Examples:</h4>
+  <pre>
+# Emit structured events
 Rails.event.notify("user.signup", user_id: 123, email: "user@example.com")
 
 # Tag events for filtering
@@ -205,374 +255,496 @@ Rails.event.tagged("graphql") do
 end
 
 # Set global context
-Rails.event.set_context(request_id: "abc123", shop_id: 456)</pre>
+Rails.event.set_context(request_id: "abc123", shop_id: 456)</pre
+  >
 
-            <h4>Business Value:</h4>
-            <ul>
-                <li>Enhanced observability and monitoring</li>
-                <li>Better integration with logging platforms (Datadog, New Relic)</li>
-                <li>Improved debugging and troubleshooting</li>
-                <li>Compliance and audit trail capabilities</li>
-            </ul>
+  <h4>Business Value:</h4>
+  <ul>
+    <li>Enhanced observability and monitoring</li>
+    <li>Better integration with logging platforms (Datadog, New Relic)</li>
+    <li>Improved debugging and troubleshooting</li>
+    <li>Compliance and audit trail capabilities</li>
+  </ul>
 
-            <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
+  <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd" />
 
-            <h3>6. Turbo Offline (Offline-First Applications)</h3>
-            <div class="info-box">
-                <p><strong>Impact: Medium-High</strong> | <strong>Status:</strong> In Development</p>
-            </div>
-            <p>Enable offline-first web and mobile applications with Hotwire.</p>
+  <h3>6. Turbo Offline (Offline-First Applications)</h3>
+  <div class="info-box">
+    <p>
+      <strong>Impact: Medium-High</strong> | <strong>Status:</strong> In
+      Development
+    </p>
+  </div>
+  <p>Enable offline-first web and mobile applications with Hotwire.</p>
 
-            <h4>What it enables:</h4>
-            <ul>
-                <li>Progressive Web App (PWA) capabilities</li>
-                <li>Offline data synchronization</li>
-                <li>Native mobile app offline support (via Hotwire Native)</li>
-                <li>Seamless online/offline transitions</li>
-            </ul>
+  <h4>What it enables:</h4>
+  <ul>
+    <li>Progressive Web App (PWA) capabilities</li>
+    <li>Offline data synchronization</li>
+    <li>Native mobile app offline support (via Hotwire Native)</li>
+    <li>Seamless online/offline transitions</li>
+  </ul>
 
-            <h4>Use Cases:</h4>
-            <ul>
-                <li>Field service applications</li>
-                <li>Mobile data collection</li>
-                <li>Remote work scenarios</li>
-                <li>Areas with unreliable connectivity</li>
-            </ul>
-        </section>
+  <h4>Use Cases:</h4>
+  <ul>
+    <li>Field service applications</li>
+    <li>Mobile data collection</li>
+    <li>Remote work scenarios</li>
+    <li>Areas with unreliable connectivity</li>
+  </ul>
+</section>
 
-        <section>
-            <h2>📱 Mobile & Native Developments</h2>
+<section>
+  <h2>📱 Mobile & Native Developments</h2>
 
-            <h3>Hotwire Native Ecosystem</h3>
-            <p>Rails 8.1 significantly enhances mobile development capabilities:</p>
+  <h3>Hotwire Native Ecosystem</h3>
+  <p>Rails 8.1 significantly enhances mobile development capabilities:</p>
 
-            <h4>1. Action Push Native</h4>
-            <ul>
-                <li>Official push notification framework</li>
-                <li>Direct APNs (iOS) and FCM (Android) integration</li>
-                <li>No third-party dependencies</li>
-            </ul>
+  <h4>1. Action Push Native</h4>
+  <ul>
+    <li>Official push notification framework</li>
+    <li>Direct APNs (iOS) and FCM (Android) integration</li>
+    <li>No third-party dependencies</li>
+  </ul>
 
-            <h4>2. Turbo Offline</h4>
-            <ul>
-                <li>Offline-first mobile applications</li>
-                <li>Data synchronization when online</li>
-                <li>Seamless UX during connectivity loss</li>
-            </ul>
+  <h4>2. Turbo Offline</h4>
+  <ul>
+    <li>Offline-first mobile applications</li>
+    <li>Data synchronization when online</li>
+    <li>Seamless UX during connectivity loss</li>
+  </ul>
 
-            <h4>3. Hotwire Native Benefits</h4>
-            <ul>
-                <li>Build once, deploy to web + iOS + Android</li>
-                <li>HTML rendering from Rails server</li>
-                <li>Native look and feel</li>
-                <li>Immediate feature parity with website</li>
-            </ul>
+  <h4>3. Hotwire Native Benefits</h4>
+  <ul>
+    <li>Build once, deploy to web + iOS + Android</li>
+    <li>HTML rendering from Rails server</li>
+    <li>Native look and feel</li>
+    <li>Immediate feature parity with website</li>
+  </ul>
 
-            <div class="highlight-box">
-                <h4>Development Approach:</h4>
-                <ul>
-                    <li>Convert existing Rails website to native apps</li>
-                    <li>Minimal additional code required</li>
-                    <li>Shared business logic across platforms</li>
-                    <li>Rapid mobile feature deployment</li>
-                </ul>
-            </div>
-        </section>
+  <div class="highlight-box">
+    <h4>Development Approach:</h4>
+    <ul>
+      <li>Convert existing Rails website to native apps</li>
+      <li>Minimal additional code required</li>
+      <li>Shared business logic across platforms</li>
+      <li>Rapid mobile feature deployment</li>
+    </ul>
+  </div>
+</section>
 
-        <section>
-            <h2>⚠️ Breaking Changes & Deprecations</h2>
+<section>
+  <h2>⚠️ Breaking Changes & Deprecations</h2>
 
-            <h3>Action Dispatch / Routing</h3>
-            <ul>
-                <li><strong>REMOVED:</strong> Deprecated support for skipping leading brackets in parameter names</li>
-                <li><strong>DEPRECATED:</strong> <code>Rails.application.config.action_dispatch.ignore_leading_brackets</code></li>
-            </ul>
+  <h3>Action Dispatch / Routing</h3>
+  <ul>
+    <li>
+      <strong>REMOVED:</strong> Deprecated support for skipping leading brackets
+      in parameter names
+    </li>
+    <li>
+      <strong>DEPRECATED:</strong>
+      <code
+        >Rails.application.config.action_dispatch.ignore_leading_brackets</code
+      >
+    </li>
+  </ul>
 
-            <h3>Active Record</h3>
-            <ul>
-                <li><strong>REMOVED:</strong> <code>:retries</code> option for SQLite3 adapter</li>
-                <li><strong>REMOVED:</strong> <code>:unsigned_float</code> and <code>:unsigned_decimal</code> column methods for MySQL</li>
-                <li><strong>CHANGED:</strong> Table columns in <code>schema.rb</code> now sorted alphabetically</li>
-            </ul>
+  <h3>Active Record</h3>
+  <ul>
+    <li>
+      <strong>REMOVED:</strong> <code>:retries</code> option for SQLite3 adapter
+    </li>
+    <li>
+      <strong>REMOVED:</strong> <code>:unsigned_float</code> and
+      <code>:unsigned_decimal</code> column methods for MySQL
+    </li>
+    <li>
+      <strong>CHANGED:</strong> Table columns in <code>schema.rb</code> now
+      sorted alphabetically
+    </li>
+  </ul>
 
-            <div class="warning-box">
-                <p><strong>⚠️ Impact:</strong> Schema file changes in version control</p>
-                <p><strong>Action:</strong> Update <code>.gitattributes</code> for schema normalization</p>
-            </div>
+  <div class="warning-box">
+    <p><strong>⚠️ Impact:</strong> Schema file changes in version control</p>
+    <p>
+      <strong>Action:</strong> Update <code>.gitattributes</code> for schema
+      normalization
+    </p>
+  </div>
 
-            <h3>Active Storage</h3>
-            <ul>
-                <li><strong>REMOVED:</strong> <code>:azure</code> storage service (deprecated)</li>
-                <li><strong>Migration Path:</strong> Switch to <code>:azure_storage_service</code> or alternative provider</li>
-            </ul>
+  <h3>Active Storage</h3>
+  <ul>
+    <li>
+      <strong>REMOVED:</strong> <code>:azure</code> storage service (deprecated)
+    </li>
+    <li>
+      <strong>Migration Path:</strong> Switch to
+      <code>:azure_storage_service</code> or alternative provider
+    </li>
+  </ul>
 
-            <h3>Active Job</h3>
-            <ul>
-                <li><strong>REMOVED:</strong> <code>ActiveJob::Base.enqueue_after_transaction_commit</code> <code>:never</code>, <code>:always</code>, <code>:default</code> options</li>
-                <li><strong>REMOVED:</strong> <code>Rails.application.config.active_job.enqueue_after_transaction_commit</code></li>
-            </ul>
-        </section>
+  <h3>Active Job</h3>
+  <ul>
+    <li>
+      <strong>REMOVED:</strong>
+      <code>ActiveJob::Base.enqueue_after_transaction_commit</code>
+      <code>:never</code>, <code>:always</code>, <code>:default</code> options
+    </li>
+    <li>
+      <strong>REMOVED:</strong>
+      <code
+        >Rails.application.config.active_job.enqueue_after_transaction_commit</code
+      >
+    </li>
+  </ul>
+</section>
 
-        <section>
-            <h2>🛠️ Ecosystem Improvements</h2>
+<section>
+  <h2>🛠️ Ecosystem Improvements</h2>
 
-            <h3>Lexxy - Modern Rich Text Editor</h3>
-            <div class="info-box">
-                <p><strong>Expected to become default ActionText editor</strong></p>
-            </div>
+  <h3>Lexxy - Modern Rich Text Editor</h3>
+  <div class="info-box">
+    <p><strong>Expected to become default ActionText editor</strong></p>
+  </div>
 
-            <h4>Features:</h4>
-            <ul>
-                <li>PDF and video previews</li>
-                <li>Real-time code syntax highlighting</li>
-                <li>Markdown shortcuts and formatting</li>
-                <li>Enhanced media handling</li>
-                <li>Modern, accessible interface</li>
-            </ul>
+  <h4>Features:</h4>
+  <ul>
+    <li>PDF and video previews</li>
+    <li>Real-time code syntax highlighting</li>
+    <li>Markdown shortcuts and formatting</li>
+    <li>Enhanced media handling</li>
+    <li>Modern, accessible interface</li>
+  </ul>
 
-            <h3>Infrastructure Tools</h3>
+  <h3>Infrastructure Tools</h3>
 
-            <h4>Beamer - SQLite Replication</h4>
-            <ul>
-                <li>Multi-server, geographically distributed Rails apps with SQLite</li>
-                <li>Database replication for edge deployments</li>
-                <li>Ideal for: Kamal deployments, edge computing, distributed systems</li>
-            </ul>
+  <h4>Beamer - SQLite Replication</h4>
+  <ul>
+    <li>Multi-server, geographically distributed Rails apps with SQLite</li>
+    <li>Database replication for edge deployments</li>
+    <li>Ideal for: Kamal deployments, edge computing, distributed systems</li>
+  </ul>
 
-            <h4>Kamal Geo Proxy</h4>
-            <ul>
-                <li>Extends Kamal Proxy for multi-region routing</li>
-                <li>Intelligent geographic request routing</li>
-                <li>Reduced latency for global users</li>
-            </ul>
+  <h4>Kamal Geo Proxy</h4>
+  <ul>
+    <li>Extends Kamal Proxy for multi-region routing</li>
+    <li>Intelligent geographic request routing</li>
+    <li>Reduced latency for global users</li>
+  </ul>
 
-            <h4>Omarchy - Development Operating System</h4>
-            <ul>
-                <li>Arch Linux optimized for Rails development</li>
-                <li>Pre-installed Ruby/Rails toolchain</li>
-                <li>Common ecosystem libraries included</li>
-                <li>Streamlined developer onboarding</li>
-            </ul>
-        </section>
+  <h4>Omarchy - Development Operating System</h4>
+  <ul>
+    <li>Arch Linux optimized for Rails development</li>
+    <li>Pre-installed Ruby/Rails toolchain</li>
+    <li>Common ecosystem libraries included</li>
+    <li>Streamlined developer onboarding</li>
+  </ul>
+</section>
 
-        <section>
-            <h2>🔄 Migration Strategy</h2>
+<section>
+  <h2>🔄 Migration Strategy</h2>
 
-            <h3>Recommended Approach</h3>
+  <h3>Recommended Approach</h3>
 
-            <h4>Phase 1: Preparation</h4>
-            <ol>
-                <li>Ensure comprehensive test coverage (>80%)</li>
-                <li>Review Rails 8.0 deprecation warnings</li>
-                <li>Audit third-party gem compatibility with Rails 8.1</li>
-                <li>Review schema.rb changes in version control</li>
-            </ol>
+  <h4>Phase 1: Preparation</h4>
+  <ol>
+    <li>Ensure comprehensive test coverage (>80%)</li>
+    <li>Review Rails 8.0 deprecation warnings</li>
+    <li>Audit third-party gem compatibility with Rails 8.1</li>
+    <li>Review schema.rb changes in version control</li>
+  </ol>
 
-            <h4>Phase 2: Testing</h4>
-            <ol>
-                <li>Upgrade to Rails 8.1 in development environment</li>
-                <li>Run full test suite and address failures</li>
-                <li>Test in staging environment with production data</li>
-                <li>Performance benchmarking (before/after comparison)</li>
-            </ol>
+  <h4>Phase 2: Testing</h4>
+  <ol>
+    <li>Upgrade to Rails 8.1 in development environment</li>
+    <li>Run full test suite and address failures</li>
+    <li>Test in staging environment with production data</li>
+    <li>Performance benchmarking (before/after comparison)</li>
+  </ol>
 
-            <h4>Phase 3: Deployment</h4>
-            <ol>
-                <li>Deploy to production during low-traffic window</li>
-                <li>Monitor error rates and performance metrics</li>
-                <li>Have rollback plan ready (database backup, previous version)</li>
-            </ol>
+  <h4>Phase 3: Deployment</h4>
+  <ol>
+    <li>Deploy to production during low-traffic window</li>
+    <li>Monitor error rates and performance metrics</li>
+    <li>Have rollback plan ready (database backup, previous version)</li>
+  </ol>
 
-            <h4>Phase 4: Optimization (Ongoing)</h4>
-            <ol>
-                <li>Implement new Rails 8.1 features progressively</li>
-                <li>Refactor to leverage Active Job Continuations</li>
-                <li>Add Structured Event Reporting for observability</li>
-                <li>Evaluate multi-tenancy with Active Record Tenanting</li>
-            </ol>
-        </section>
+  <h4>Phase 4: Optimization (Ongoing)</h4>
+  <ol>
+    <li>Implement new Rails 8.1 features progressively</li>
+    <li>Refactor to leverage Active Job Continuations</li>
+    <li>Add Structured Event Reporting for observability</li>
+    <li>Evaluate multi-tenancy with Active Record Tenanting</li>
+  </ol>
+</section>
 
-        <section>
-            <h2>💡 Feature Adoption Roadmap</h2>
+<section>
+  <h2>💡 Feature Adoption Roadmap</h2>
 
-            <h3>Immediate Opportunities (Quick Wins)</h3>
+  <h3>Immediate Opportunities (Quick Wins)</h3>
 
-            <h4>1. Local CI Integration</h4>
-            <ul>
-                <li><strong>Setup:</strong> Add <code>config/ci.rb</code> configuration</li>
-                <li><strong>Impact:</strong> Faster developer feedback, reduced CI costs</li>
-                <li><strong>Risk:</strong> Low</li>
-            </ul>
+  <h4>1. Local CI Integration</h4>
+  <ul>
+    <li><strong>Setup:</strong> Add <code>config/ci.rb</code> configuration</li>
+    <li>
+      <strong>Impact:</strong> Faster developer feedback, reduced CI costs
+    </li>
+    <li><strong>Risk:</strong> Low</li>
+  </ul>
 
-            <h4>2. Structured Event Reporting</h4>
-            <ul>
-                <li><strong>Setup:</strong> Configure event subscribers</li>
-                <li><strong>Impact:</strong> Enhanced monitoring and observability</li>
-                <li><strong>Risk:</strong> Low</li>
-            </ul>
+  <h4>2. Structured Event Reporting</h4>
+  <ul>
+    <li><strong>Setup:</strong> Configure event subscribers</li>
+    <li><strong>Impact:</strong> Enhanced monitoring and observability</li>
+    <li><strong>Risk:</strong> Low</li>
+  </ul>
 
-            <h4>3. Markdown Rendering</h4>
-            <ul>
-                <li><strong>Setup:</strong> Update controllers to use new markdown helpers</li>
-                <li><strong>Impact:</strong> Simplified content rendering</li>
-                <li><strong>Risk:</strong> Low</li>
-            </ul>
+  <h4>3. Markdown Rendering</h4>
+  <ul>
+    <li>
+      <strong>Setup:</strong> Update controllers to use new markdown helpers
+    </li>
+    <li><strong>Impact:</strong> Simplified content rendering</li>
+    <li><strong>Risk:</strong> Low</li>
+  </ul>
 
-            <h3>Medium-Term Initiatives</h3>
+  <h3>Medium-Term Initiatives</h3>
 
-            <h4>1. Active Job Continuations</h4>
-            <ul>
-                <li><strong>Refactor:</strong> Identify long-running jobs for conversion</li>
-                <li><strong>Impact:</strong> Zero-downtime deployments, resilient job processing</li>
-                <li><strong>Risk:</strong> Medium (requires job architecture changes)</li>
-            </ul>
+  <h4>1. Active Job Continuations</h4>
+  <ul>
+    <li>
+      <strong>Refactor:</strong> Identify long-running jobs for conversion
+    </li>
+    <li>
+      <strong>Impact:</strong> Zero-downtime deployments, resilient job
+      processing
+    </li>
+    <li><strong>Risk:</strong> Medium (requires job architecture changes)</li>
+  </ul>
 
-            <h4>2. Lexxy Rich Text Editor</h4>
-            <ul>
-                <li><strong>Migration:</strong> Replace existing ActionText editor</li>
-                <li><strong>Impact:</strong> Enhanced content editing experience</li>
-                <li><strong>Risk:</strong> Low-Medium (user retraining needed)</li>
-            </ul>
+  <h4>2. Lexxy Rich Text Editor</h4>
+  <ul>
+    <li><strong>Migration:</strong> Replace existing ActionText editor</li>
+    <li><strong>Impact:</strong> Enhanced content editing experience</li>
+    <li><strong>Risk:</strong> Low-Medium (user retraining needed)</li>
+  </ul>
 
-            <h3>Strategic Initiatives</h3>
+  <h3>Strategic Initiatives</h3>
 
-            <h4>1. Action Push Native</h4>
-            <ul>
-                <li><strong>Setup:</strong> Mobile app infrastructure, APNs/FCM configuration</li>
-                <li><strong>Impact:</strong> Native mobile engagement, user retention</li>
-                <li><strong>Risk:</strong> Medium (requires mobile app development)</li>
-            </ul>
+  <h4>1. Action Push Native</h4>
+  <ul>
+    <li>
+      <strong>Setup:</strong> Mobile app infrastructure, APNs/FCM configuration
+    </li>
+    <li><strong>Impact:</strong> Native mobile engagement, user retention</li>
+    <li><strong>Risk:</strong> Medium (requires mobile app development)</li>
+  </ul>
 
-            <h4>2. Active Record Tenanting</h4>
-            <ul>
-                <li><strong>Architecture:</strong> Multi-tenant data model design</li>
-                <li><strong>Impact:</strong> SaaS capabilities, customer isolation</li>
-                <li><strong>Risk:</strong> High (fundamental architecture change)</li>
-            </ul>
+  <h4>2. Active Record Tenanting</h4>
+  <ul>
+    <li><strong>Architecture:</strong> Multi-tenant data model design</li>
+    <li><strong>Impact:</strong> SaaS capabilities, customer isolation</li>
+    <li><strong>Risk:</strong> High (fundamental architecture change)</li>
+  </ul>
 
-            <h4>3. Turbo Offline</h4>
-            <ul>
-                <li><strong>Implementation:</strong> Service workers, offline data sync</li>
-                <li><strong>Impact:</strong> Offline-capable mobile and web apps</li>
-                <li><strong>Risk:</strong> Medium (requires offline-first architecture)</li>
-            </ul>
-        </section>
+  <h4>3. Turbo Offline</h4>
+  <ul>
+    <li><strong>Implementation:</strong> Service workers, offline data sync</li>
+    <li><strong>Impact:</strong> Offline-capable mobile and web apps</li>
+    <li><strong>Risk:</strong> Medium (requires offline-first architecture)</li>
+  </ul>
+</section>
 
-        <section>
-            <h2>📊 Risk Assessment</h2>
+<section>
+  <h2>📊 Risk Assessment</h2>
 
-            <h3>Low Risk ✅</h3>
-            <ul>
-                <li>Local CI integration</li>
-                <li>Structured event reporting</li>
-                <li>Markdown rendering improvements</li>
-                <li>Lexxy rich text editor adoption</li>
-            </ul>
+  <h3>Low Risk ✅</h3>
+  <ul>
+    <li>Local CI integration</li>
+    <li>Structured event reporting</li>
+    <li>Markdown rendering improvements</li>
+    <li>Lexxy rich text editor adoption</li>
+  </ul>
 
-            <h3>Medium Risk ⚠️</h3>
-            <ul>
-                <li>Active Job Continuations (requires job refactoring)</li>
-                <li>Action Push Native (mobile infrastructure setup)</li>
-                <li>Turbo Offline (offline architecture design)</li>
-                <li>Schema.rb alphabetical sorting (version control churn)</li>
-            </ul>
+  <h3>Medium Risk ⚠️</h3>
+  <ul>
+    <li>Active Job Continuations (requires job refactoring)</li>
+    <li>Action Push Native (mobile infrastructure setup)</li>
+    <li>Turbo Offline (offline architecture design)</li>
+    <li>Schema.rb alphabetical sorting (version control churn)</li>
+  </ul>
 
-            <h3>High Risk 🚨</h3>
-            <ul>
-                <li>Active Record Tenanting (fundamental data model changes)</li>
-                <li>Breaking changes in Action Dispatch/Active Record</li>
-                <li>Third-party gem incompatibilities</li>
-            </ul>
-        </section>
+  <h3>High Risk 🚨</h3>
+  <ul>
+    <li>Active Record Tenanting (fundamental data model changes)</li>
+    <li>Breaking changes in Action Dispatch/Active Record</li>
+    <li>Third-party gem incompatibilities</li>
+  </ul>
+</section>
 
-        <section>
-            <h2>🎯 Recommendations</h2>
+<section>
+  <h2>🎯 Recommendations</h2>
 
-            <h3>For Your Rails 8.0 Application</h3>
+  <h3>For Your Rails 8.0 Application</h3>
 
-            <h4>1. Start Planning Now</h4>
-            <ul>
-                <li>Review breaking changes against your codebase</li>
-                <li>Audit gem compatibility (check GitHub issues for Rails 8.1)</li>
-                <li>Assess test coverage completeness</li>
-            </ul>
+  <h4>1. Start Planning Now</h4>
+  <ul>
+    <li>Review breaking changes against your codebase</li>
+    <li>Audit gem compatibility (check GitHub issues for Rails 8.1)</li>
+    <li>Assess test coverage completeness</li>
+  </ul>
 
-            <h4>2. Prioritize Quick Wins</h4>
-            <ul>
-                <li>Implement Local CI for developer productivity</li>
-                <li>Add Structured Event Reporting for observability</li>
-                <li>Evaluate Markdown rendering if applicable</li>
-            </ul>
+  <h4>2. Prioritize Quick Wins</h4>
+  <ul>
+    <li>Implement Local CI for developer productivity</li>
+    <li>Add Structured Event Reporting for observability</li>
+    <li>Evaluate Markdown rendering if applicable</li>
+  </ul>
 
-            <h4>3. Strategic Feature Adoption</h4>
-            <ul>
-                <li><strong>If you have long-running jobs:</strong> Prioritize Active Job Continuations</li>
-                <li><strong>If you're building SaaS:</strong> Evaluate Active Record Tenanting</li>
-                <li><strong>If you have mobile apps:</strong> Plan Action Push Native integration</li>
-                <li><strong>If offline capability is needed:</strong> Research Turbo Offline</li>
-            </ul>
+  <h4>3. Strategic Feature Adoption</h4>
+  <ul>
+    <li>
+      <strong>If you have long-running jobs:</strong> Prioritize Active Job
+      Continuations
+    </li>
+    <li>
+      <strong>If you're building SaaS:</strong> Evaluate Active Record Tenanting
+    </li>
+    <li>
+      <strong>If you have mobile apps:</strong> Plan Action Push Native
+      integration
+    </li>
+    <li>
+      <strong>If offline capability is needed:</strong> Research Turbo Offline
+    </li>
+  </ul>
 
-            <h4>4. Migration Timeline</h4>
-            <ul>
-                <li>Wait for Rails 8.1 stable release (estimated Q4 2025)</li>
-                <li>Begin migration in non-production environments</li>
-                <li>Plan migration timeline based on your project complexity and resources</li>
-            </ul>
+  <h4>4. Migration Timeline</h4>
+  <ul>
+    <li>Wait for Rails 8.1 stable release (estimated Q4 2025)</li>
+    <li>Begin migration in non-production environments</li>
+    <li>
+      Plan migration timeline based on your project complexity and resources
+    </li>
+  </ul>
 
-            <h4>5. Training & Documentation</h4>
-            <ul>
-                <li>Schedule team training on new features</li>
-                <li>Update internal documentation and coding standards</li>
-                <li>Create migration runbooks for deployment</li>
-            </ul>
-        </section>
+  <h4>5. Training & Documentation</h4>
+  <ul>
+    <li>Schedule team training on new features</li>
+    <li>Update internal documentation and coding standards</li>
+    <li>Create migration runbooks for deployment</li>
+  </ul>
+</section>
 
-        <section>
-            <h2>📚 Resources</h2>
+<section>
+  <h2>📚 Resources</h2>
 
-            <h3>Official Documentation:</h3>
-            <ul>
-                <li><a href="https://edgeguides.rubyonrails.org/8_1_release_notes.html" target="_blank">Rails 8.1 Release Notes</a></li>
-                <li><a href="https://rubyonrails.org/2025/9/4/rails-8-1-beta-1" target="_blank">Rails 8.1 Beta Announcement</a></li>
-                <li><a href="https://guides.rubyonrails.org/upgrading_ruby_on_rails.html" target="_blank">Upgrading Ruby on Rails Guide</a></li>
-            </ul>
+  <h3>Official Documentation:</h3>
+  <ul>
+    <li>
+      <a
+        href="https://edgeguides.rubyonrails.org/8_1_release_notes.html"
+        target="_blank"
+        >Rails 8.1 Release Notes</a
+      >
+    </li>
+    <li>
+      <a
+        href="https://rubyonrails.org/2025/9/4/rails-8-1-beta-1"
+        target="_blank"
+        >Rails 8.1 Beta Announcement</a
+      >
+    </li>
+    <li>
+      <a
+        href="https://guides.rubyonrails.org/upgrading_ruby_on_rails.html"
+        target="_blank"
+        >Upgrading Ruby on Rails Guide</a
+      >
+    </li>
+  </ul>
 
-            <h3>GitHub Repositories:</h3>
-            <ul>
-                <li><a href="https://github.com/rails/rails" target="_blank">Rails Framework</a></li>
-                <li><a href="https://github.com/rails/action_push_native" target="_blank">Action Push Native</a></li>
-                <li><a href="https://github.com/hotwired/hotwire-native-ios" target="_blank">Hotwire Native</a></li>
-            </ul>
+  <h3>GitHub Repositories:</h3>
+  <ul>
+    <li>
+      <a href="https://github.com/rails/rails" target="_blank"
+        >Rails Framework</a
+      >
+    </li>
+    <li>
+      <a href="https://github.com/rails/action_push_native" target="_blank"
+        >Action Push Native</a
+      >
+    </li>
+    <li>
+      <a href="https://github.com/hotwired/hotwire-native-ios" target="_blank"
+        >Hotwire Native</a
+      >
+    </li>
+  </ul>
 
-            <h3>Community Resources:</h3>
-            <ul>
-                <li>RailsWorld 2025 Presentations (Amsterdam)</li>
-                <li><a href="https://discuss.rubyonrails.org" target="_blank">Rails 8.1 Feature Discussions</a></li>
-            </ul>
-        </section>
+  <h3>Community Resources:</h3>
+  <ul>
+    <li>RailsWorld 2025 Presentations (Amsterdam)</li>
+    <li>
+      <a href="https://discuss.rubyonrails.org" target="_blank"
+        >Rails 8.1 Feature Discussions</a
+      >
+    </li>
+  </ul>
+</section>
 
-        <section>
-            <h2>📞 Next Steps</h2>
-            <ol>
-                <li><strong>Review this report</strong> with your development team</li>
-                <li><strong>Assess impact</strong> of breaking changes on your application</li>
-                <li><strong>Identify priority features</strong> aligned with business objectives</li>
-                <li><strong>Create migration plan</strong> with timeline and resource allocation</li>
-                <li><strong>Schedule follow-up</strong> to discuss implementation strategy</li>
-            </ol>
-        </section>
+<section>
+  <h2>📞 Next Steps</h2>
+  <ol>
+    <li><strong>Review this report</strong> with your development team</li>
+    <li>
+      <strong>Assess impact</strong> of breaking changes on your application
+    </li>
+    <li>
+      <strong>Identify priority features</strong> aligned with business
+      objectives
+    </li>
+    <li>
+      <strong>Create migration plan</strong> with timeline and resource
+      allocation
+    </li>
+    <li>
+      <strong>Schedule follow-up</strong> to discuss implementation strategy
+    </li>
+  </ol>
+</section>
 
-        <div class="info-box">
-            <p><strong>Report Prepared By:</strong> Richard Piacentini with AI Analysis</p>
-            <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/richardpiacentini/" target="_blank">linkedin.com/in/richardpiacentini</a></p>
-            <p><strong>Based on:</strong> Official Rails documentation, community announcements, and ecosystem research</p>
-            <p><strong>Recommendations:</strong> Consult with Rails experts for application-specific guidance</p>
-        </div>
+<div class="info-box">
+  <p>
+    <strong>Report Prepared By:</strong> Richard Piacentini with AI Analysis
+  </p>
+  <p>
+    <strong>LinkedIn:</strong>
+    <a href="https://linkedin.com/in/richardpiacentini/" target="_blank"
+      >linkedin.com/in/richardpiacentini</a
+    >
+  </p>
+  <p>
+    <strong>Based on:</strong> Official Rails documentation, community
+    announcements, and ecosystem research
+  </p>
+  <p>
+    <strong>Recommendations:</strong> Consult with Rails experts for
+    application-specific guidance
+  </p>
+</div>
 
-        <div class="warning-box">
-            <p><em>This report reflects information available as of October 5, 2025. Rails 8.1 is currently in beta; features may change before final release.</em></p>
-        </div>
+<div class="warning-box">
+  <p>
+    <em
+      >This report reflects information available as of October 5, 2025. Rails
+      8.1 is currently in beta; features may change before final release.</em
+    >
+  </p>
+</div>
 
-        <a href="Rails_8.1_Documentation_Index.html" class="back-link">← Back to Documentation Index</a>
+<a href="index.html" class="back-link">← Back to Documentation Index</a>
 
 {% include "footer.html" %}
