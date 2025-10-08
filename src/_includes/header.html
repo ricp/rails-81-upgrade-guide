@@ -341,7 +341,7 @@
 <body>
     <div class="container">
         <header>
-            {% if backLink %}<a href="{{ backLink }}" class="back-link">{{ backLinkText | default: "← Back to Documentation Index" }}</a>{% endif %}
+            {% if backLink %}<a href="{{ backLink | default: '../index.html' }}" class="back-link">{{ backLinkText | default: "← Back to Documentation Index" }}</a>{% endif %}
             <div style="margin-bottom: 15px;">
                 <span class="professional-badge">✨ PROFESSIONAL EDITION</span>
             </div>
