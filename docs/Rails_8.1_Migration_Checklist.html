@@ -172,6 +172,32 @@
             border: 2px solid rgba(255,255,255,0.3);
         }
 
+        .living-doc-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+            border: 1.5px solid rgba(255,255,255,0.3);
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+            border: 1.5px solid rgba(255,255,255,0.3);
+        }
+
         .value-indicator {
             font-size: 0.85em;
             color: #666;
@@ -424,8 +450,8 @@
                 </div>
                 <div class="meta-details">
                     <p><strong>AI Research & Analysis:</strong> Claude Sonnet 4.5 (Anthropic)</p>
-                    <p><strong>Documentation Suite:</strong> October 7, 2025</p>
-                    <p style="font-size: 0.9em; font-weight: 600;">📝 Living Document - Updated until Rails 8.1 stable release</p>
+                    <p><span class="date-badge">📅 Documentation Suite: October 7, 2025</span></p>
+                    <p><span class="living-doc-badge">📝 Living Document - Updated until Rails 8.1 stable release</span></p>
                 </div>
                 
             </div>
@@ -1162,9 +1188,7 @@
   </div>
 </section>
 
-<a href="index.html" class="back-link"
-  >← Back to Documentation Index</a
->
+<a href="index.html" class="back-link">← Back to Documentation Index</a>
 
         <footer>
             

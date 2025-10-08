@@ -171,6 +171,32 @@
             border: 2px solid rgba(255,255,255,0.3);
         }
 
+        .living-doc-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+            border: 1.5px solid rgba(255,255,255,0.3);
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+            border: 1.5px solid rgba(255,255,255,0.3);
+        }
+
         .value-indicator {
             font-size: 0.85em;
             color: #666;
@@ -423,8 +449,8 @@
                 </div>
                 <div class="meta-details">
                     <p><strong>AI Research & Analysis:</strong> Claude Sonnet 4.5 (Anthropic)</p>
-                    <p><strong>Documentation Suite:</strong> {{ site.preparedDate }}</p>
-                    <p style="font-size: 0.9em; font-weight: 600;">📝 {{ site.documentStatus }}</p>
+                    <p><span class="date-badge">📅 Documentation Suite: {{ site.preparedDate }}</span></p>
+                    <p><span class="living-doc-badge">📝 {{ site.documentStatus }}</span></p>
                 </div>
                 {% if metaInfo %}{{ metaInfo }}{% endif %}
             </div>
