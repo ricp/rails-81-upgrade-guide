@@ -5,682 +5,740 @@ subtitle: Practical Upgrade Guide for Rails 8.0 → 8.1
 backLink: Rails_8.1_Documentation_Index.html
 permalink: Rails_8.1_Migration_Checklist.html
 ---
+
 {% include "header.html" %}
 
-            <div class="project-info">
-                <p><strong>Project:</strong> [Your Application Name]</p>
-                <p><strong>Current Version:</strong> Rails 8.0.x</p>
-                <p><strong>Target Version:</strong> Rails 8.1</p>
-                <p><strong>Migration Start Date:</strong> ___________</p>
-                <p><strong>Target Completion:</strong> ___________</p>
-            </div>
-
-        <section>
-            <h2>📋 Pre-Migration Assessment</h2>
-
-            <div class="phase-section">
-                <h3>Test Coverage Audit</h3>
-                <ul class="checklist">
-                    <li>Run test suite and document baseline (all tests passing)</li>
-                    <li>Measure current test coverage: ______%</li>
-                    <li>Target coverage before upgrade: >80%</li>
-                    <li>Identify critical paths without tests</li>
-                    <li>Add missing test coverage for critical features</li>
-                    <li>Document any known test failures or flaky tests</li>
-                </ul>
-            </div>
-
-            <div class="phase-section">
-                <h3>Dependency Analysis</h3>
-                <ul class="checklist">
-                    <li>List all gems in <code>Gemfile</code> with versions</li>
-                    <li>Check Rails 8.1 compatibility for each gem on GitHub issues</li>
-                    <li>Identify gems that need updates</li>
-                    <li>Identify gems that may need alternatives</li>
-                    <li>Review <code>Gemfile.lock</code> for indirect dependencies</li>
-                    <li>Document any custom monkey patches or Rails extensions</li>
-                </ul>
-
-                <h4>Gems Requiring Attention:</h4>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Gem Name</th>
-                            <th>Current Version</th>
-                            <th>Rails 8.1 Compatible?</th>
-                            <th>Action Required</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="4" style="text-align: center; color: #999;">Fill in during assessment</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="phase-section">
-                <h3>Breaking Changes Impact</h3>
-                <ul class="checklist">
-                    <li>Review Action Dispatch parameter parsing changes</li>
-                    <li>Audit MySQL <code>unsigned_float</code> and <code>unsigned_decimal</code> usage</li>
-                    <li>Check Active Storage Azure configuration</li>
-                    <li>Review Active Job <code>enqueue_after_transaction_commit</code> usage</li>
-                    <li>Assess schema.rb alphabetical sorting impact</li>
-                    <li>Document all affected code locations</li>
-                </ul>
-
-                <div class="info-box">
-                    <h4>Impact Assessment:</h4>
-                    <ul>
-                        <li>High Impact: _______ files</li>
-                        <li>Medium Impact: _______ files</li>
-                        <li>Low Impact: _______ files</li>
-                        <li>No Impact: ✅</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>🔧 Environment Setup</h2>
-
-            <div class="phase-section">
-                <h3>Development Environment</h3>
-                <ul class="checklist">
-                    <li>Create new branch: <code>upgrade/rails-8-1</code></li>
-                    <li>Backup database: <code>pg_dump</code> / <code>mysqldump</code></li>
-                    <li>Update <code>Gemfile</code>: <code>gem 'rails', '~> 8.1.0'</code></li>
-                    <li>Update Rails: <code>bundle update rails</code></li>
-                    <li>Update all gems: <code>bundle update</code></li>
-                    <li>Run <code>bin/rails app:update</code> (interactive)</li>
-                    <li>Review and merge configuration changes</li>
-                    <li>Run <code>bin/rails db:migrate</code></li>
-                </ul>
-            </div>
-
-            <div class="phase-section">
-                <h3>Configuration Updates</h3>
-                <ul class="checklist">
-                    <li>Review <code>config/application.rb</code> changes</li>
-                    <li>Review <code>config/environments/*.rb</code> changes</li>
-                    <li>Update <code>.gitattributes</code> for schema.rb normalization</li>
-                    <li>Review <code>config/initializers</code> for deprecation warnings</li>
-                    <li>Update <code>config/database.yml</code> if using Azure storage</li>
-                </ul>
-
-                <h4>.gitattributes update:</h4>
-                <pre>db/schema.rb merge=union</pre>
-            </div>
-        </section>
-
-        <section>
-            <h2>🧪 Testing Phase</h2>
-
-            <div class="phase-section">
-                <h3>Automated Testing</h3>
-                <ul class="checklist">
-                    <li>Run full test suite: <code>bin/rails test</code> (or <code>bundle exec rspec</code>)</li>
-                    <li>Document all test failures</li>
-                    <li>Fix compatibility issues</li>
-                    <li>Re-run tests until all pass</li>
-                    <li>Check for deprecation warnings in logs</li>
-                    <li>Run linter/static analysis: <code>bundle exec rubocop</code></li>
-                    <li>Run security audit: <code>bundle exec brakeman</code></li>
-                </ul>
-
-                <div class="info-box">
-                    <h4>Test Results:</h4>
-                    <ul>
-                        <li>Total Tests: _______</li>
-                        <li>Passing: _______</li>
-                        <li>Failing: _______</li>
-                        <li>Skipped: _______</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="phase-section">
-                <h3>Manual Testing Checklist</h3>
-                <ul class="checklist">
-                    <li>User authentication/login flows</li>
-                    <li>Critical business workflows</li>
-                    <li>Payment processing (if applicable)</li>
-                    <li>File uploads (Active Storage)</li>
-                    <li>Background jobs (Active Job)</li>
-                    <li>Admin interfaces</li>
-                    <li>API endpoints (if applicable)</li>
-                    <li>Email delivery</li>
-                    <li>Third-party integrations</li>
-                </ul>
-            </div>
-
-            <div class="phase-section">
-                <h3>Performance Baseline</h3>
-                <ul class="checklist">
-                    <li>Measure baseline performance (before upgrade)
-                        <ul style="margin-left: 20px; margin-top: 10px;">
-                            <li>Response time (p50): _______ ms</li>
-                            <li>Response time (p95): _______ ms</li>
-                            <li>Requests per second: _______</li>
-                            <li>Memory usage: _______ MB</li>
-                        </ul>
-                    </li>
-                    <li>Run performance tests after upgrade</li>
-                    <li>Compare before/after metrics</li>
-                    <li>Investigate any regressions >10%</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2>🚀 Staging Deployment</h2>
-
-            <div class="phase-section">
-                <h3>Staging Environment Preparation</h3>
-                <ul class="checklist">
-                    <li>Deploy to staging environment</li>
-                    <li>Run database migrations</li>
-                    <li>Verify all services start successfully</li>
-                    <li>Check logs for errors/warnings</li>
-                    <li>Run smoke tests on critical features</li>
-                    <li>Load test with production-like data volume</li>
-                    <li>Test with production data snapshot (if safe)</li>
-                </ul>
-            </div>
-
-            <div class="phase-section">
-                <h3>Staging Validation</h3>
-                <ul class="checklist">
-                    <li>Full regression testing</li>
-                    <li>Cross-browser testing (if web app)</li>
-                    <li>Mobile responsiveness testing</li>
-                    <li>Integration testing with external services</li>
-                    <li>Performance monitoring setup</li>
-                    <li>Error tracking validation (Sentry, Rollbar, etc.)</li>
-                </ul>
-            </div>
-
-            <div class="phase-section">
-                <h3>Rollback Test</h3>
-                <ul class="checklist">
-                    <li>Document rollback procedure</li>
-                    <li>Test rollback to Rails 8.0 in staging</li>
-                    <li>Verify data integrity after rollback</li>
-                    <li>Document any rollback gotchas</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2>📊 Pre-Production Checklist</h2>
-
-            <div class="phase-section">
-                <h3>Monitoring Setup</h3>
-                <ul class="checklist">
-                    <li>Configure error tracking (Sentry, Honeybadger, etc.)</li>
-                    <li>Set up performance monitoring (New Relic, Scout, etc.)</li>
-                    <li>Configure log aggregation (Papertrail, Datadog, etc.)</li>
-                    <li>Set up uptime monitoring</li>
-                    <li>Configure alert thresholds</li>
-                    <li>Test alert notifications</li>
-                </ul>
-            </div>
-
-            <div class="phase-section">
-                <h3>Database Preparation</h3>
-                <ul class="checklist">
-                    <li>Full database backup (production)</li>
-                    <li>Test restore procedure</li>
-                    <li>Estimate migration duration</li>
-                    <li>Plan for migration downtime (if any)</li>
-                    <li>Prepare database rollback strategy</li>
-                </ul>
-            </div>
-
-            <div class="phase-section">
-                <h3>Communication Plan</h3>
-                <ul class="checklist">
-                    <li>Notify stakeholders of upgrade schedule</li>
-                    <li>Prepare status page announcement</li>
-                    <li>Schedule maintenance window (if needed)</li>
-                    <li>Prepare internal team communication</li>
-                    <li>Draft customer notification (if user-facing changes)</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2>🎯 Production Deployment</h2>
-
-            <div class="phase-section">
-                <h3>Pre-Deployment</h3>
-                <ul class="checklist">
-                    <li>Schedule deployment during low-traffic window</li>
-                    <li>Confirm all stakeholders are available</li>
-                    <li>Enable maintenance mode (if applicable)</li>
-                    <li>Final production database backup</li>
-                    <li>Scale up infrastructure (if needed for migration)</li>
-                    <li>Verify monitoring dashboards ready</li>
-                </ul>
-            </div>
-
-            <div class="phase-section">
-                <h3>Deployment Steps</h3>
-                <ul class="checklist">
-                    <li>Deploy code to production</li>
-                    <li>Run database migrations: <code>bin/rails db:migrate</code></li>
-                    <li>Restart application servers</li>
-                    <li>Clear application cache</li>
-                    <li>Warm up application cache (if applicable)</li>
-                    <li>Disable maintenance mode</li>
-                    <li>Monitor error rates (first 30 minutes)</li>
-                </ul>
-            </div>
-
-            <div class="phase-section">
-                <h3>Post-Deployment Validation</h3>
-                <ul class="checklist">
-                    <li>Verify critical features working</li>
-                    <li>Check error logs (no unexpected errors)</li>
-                    <li>Monitor performance metrics</li>
-                    <li>Test background job processing</li>
-                    <li>Verify scheduled tasks running</li>
-                    <li>Check third-party integrations</li>
-                    <li>Monitor database performance</li>
-                    <li>Validate asset delivery (CDN)</li>
-                </ul>
-            </div>
-
-            <div class="action-box">
-                <h3>Success Criteria (First 24 Hours)</h3>
-                <ul class="checklist">
-                    <li>Error rate: < baseline +5%</li>
-                    <li>Response time: within baseline ±10%</li>
-                    <li>Background job success rate: >95%</li>
-                    <li>Zero data corruption incidents</li>
-                    <li>All critical features operational</li>
-                    <li>No customer complaints about broken features</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2>🆕 New Features Adoption</h2>
-
-            <div class="phase-section">
-                <h3>Quick Wins (Immediate)</h3>
-
-                <h4>Local CI Setup</h4>
-                <ul class="checklist">
-                    <li>Create <code>config/ci.rb</code> configuration</li>
-                    <li>Test with <code>bin/ci</code> locally</li>
-                    <li>Update team documentation</li>
-                    <li>Train developers on usage</li>
-                </ul>
-
-                <h4>Structured Event Reporting</h4>
-                <ul class="checklist">
-                    <li>Configure event subscribers</li>
-                    <li>Identify key events to track</li>
-                    <li>Set up event logging/forwarding</li>
-                    <li>Update monitoring dashboards</li>
-                </ul>
-
-                <h4>Markdown Rendering (if applicable)</h4>
-                <ul class="checklist">
-                    <li>Update controllers using markdown</li>
-                    <li>Test rendering in development</li>
-                    <li>Deploy to production</li>
-                </ul>
-            </div>
-
-            <div class="phase-section">
-                <h3>Medium-Term Features</h3>
-
-                <h4>Active Job Continuations</h4>
-                <ul class="checklist">
-                    <li>Identify long-running jobs for conversion</li>
-                    <li>Refactor jobs to use continuations</li>
-                    <li>Test with Kamal deployments</li>
-                    <li>Monitor job resilience improvements</li>
-                </ul>
-
-                <h4>Lexxy Rich Text Editor (if using ActionText)</h4>
-                <ul class="checklist">
-                    <li>Install Lexxy gem</li>
-                    <li>Configure editor settings</li>
-                    <li>Update frontend integration</li>
-                    <li>Train content editors</li>
-                </ul>
-            </div>
-
-            <div class="phase-section">
-                <h3>Strategic Features</h3>
-
-                <h4>Action Push Native (if mobile app exists)</h4>
-                <ul class="checklist">
-                    <li>Set up APNs certificates (iOS)</li>
-                    <li>Configure FCM credentials (Android)</li>
-                    <li>Install action_push_native gem</li>
-                    <li>Implement notification sending</li>
-                    <li>Test on iOS and Android devices</li>
-                </ul>
-
-                <h4>Active Record Tenanting (if multi-tenant needed)</h4>
-                <ul class="checklist">
-                    <li>Design tenant data model</li>
-                    <li>Configure tenant resolver</li>
-                    <li>Migrate existing data</li>
-                    <li>Test tenant isolation</li>
-                    <li>Deploy incrementally</li>
-                </ul>
-
-                <h4>Turbo Offline (if offline capability needed)</h4>
-                <ul class="checklist">
-                    <li>Design offline data strategy</li>
-                    <li>Implement service workers</li>
-                    <li>Configure data synchronization</li>
-                    <li>Test offline scenarios</li>
-                    <li>Deploy to production</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2>🐛 Troubleshooting Guide</h2>
-
-            <div class="warning-box">
-                <h3>Common Issues & Solutions</h3>
-
-                <h4>Issue: Tests failing after upgrade</h4>
-                <ul class="checklist">
-                    <li>Check for gem compatibility issues</li>
-                    <li>Review deprecation warnings in test output</li>
-                    <li>Update test helpers for Rails 8.1 changes</li>
-                    <li>Check for breaking changes in test frameworks</li>
-                </ul>
-
-                <h4>Issue: Schema.rb shows massive changes</h4>
-                <ul class="checklist">
-                    <li>This is expected (alphabetical sorting)</li>
-                    <li>Update <code>.gitattributes</code> with <code>db/schema.rb merge=union</code></li>
-                    <li>Commit schema.rb separately for clean diff</li>
-                </ul>
-
-                <h4>Issue: Background jobs failing</h4>
-                <ul class="checklist">
-                    <li>Check Active Job configuration changes</li>
-                    <li>Review <code>enqueue_after_transaction_commit</code> usage</li>
-                    <li>Verify job queue configuration (Sidekiq, Delayed Job, etc.)</li>
-                    <li>Check for serialization issues</li>
-                </ul>
-
-                <h4>Issue: Active Storage errors</h4>
-                <ul class="checklist">
-                    <li>Check for Azure storage configuration</li>
-                    <li>Verify storage service configuration</li>
-                    <li>Test file upload/download</li>
-                    <li>Review Active Storage migrations</li>
-                </ul>
-
-                <h4>Issue: Performance degradation</h4>
-                <ul class="checklist">
-                    <li>Check database query performance</li>
-                    <li>Review N+1 queries (bullet gem)</li>
-                    <li>Verify cache configuration</li>
-                    <li>Check asset compilation settings</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2>📈 Post-Migration Monitoring</h2>
-
-            <div class="phase-section">
-                <h3>Initial Monitoring</h3>
-                <ul class="checklist">
-                    <li>Daily error rate review</li>
-                    <li>Daily performance metrics check</li>
-                    <li>Background job success rate tracking</li>
-                    <li>User feedback monitoring</li>
-                    <li>Critical feature validation</li>
-                </ul>
-            </div>
-
-            <div class="phase-section">
-                <h3>Ongoing Monitoring</h3>
-                <ul class="checklist">
-                    <li>Regular metrics review</li>
-                    <li>Identify any new patterns/issues</li>
-                    <li>Performance optimization opportunities</li>
-                    <li>Cost analysis (infrastructure, CI, etc.)</li>
-                </ul>
-            </div>
-
-            <div class="action-box">
-                <h3>Success Metrics</h3>
-                <ul class="checklist">
-                    <li>Zero critical bugs introduced</li>
-                    <li>Performance within acceptable range (±10%)</li>
-                    <li>All features working as expected</li>
-                    <li>Team productive with new version</li>
-                    <li>Positive user feedback</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2>🔄 Rollback Procedure</h2>
-
-            <div class="warning-box">
-                <h3>If critical issues arise:</h3>
-
-                <h4>1. Immediate Actions</h4>
-                <ul class="checklist">
-                    <li>Enable maintenance mode</li>
-                    <li>Stop background job processing</li>
-                    <li>Notify stakeholders</li>
-                </ul>
-
-                <h4>2. Rollback Steps</h4>
-                <ul class="checklist">
-                    <li>Deploy previous Rails 8.0 version</li>
-                    <li>Restore database backup (if schema changed)</li>
-                    <li>Restart application servers</li>
-                    <li>Clear cache</li>
-                    <li>Verify application functionality</li>
-                </ul>
-
-                <h4>3. Post-Rollback</h4>
-                <ul class="checklist">
-                    <li>Document issues encountered</li>
-                    <li>Analyze root cause</li>
-                    <li>Plan corrective actions</li>
-                    <li>Reschedule upgrade</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2>📝 Team Training</h2>
-
-            <div class="phase-section">
-                <h3>Developer Training Topics</h3>
-                <ul class="checklist">
-                    <li>Rails 8.1 new features overview</li>
-                    <li>Active Job Continuations usage</li>
-                    <li>Local CI workflow</li>
-                    <li>Structured Event Reporting</li>
-                    <li>Breaking changes awareness</li>
-                    <li>Troubleshooting common issues</li>
-                </ul>
-            </div>
-
-            <div class="phase-section">
-                <h3>Documentation Updates</h3>
-                <ul class="checklist">
-                    <li>Update README with Rails 8.1 info</li>
-                    <li>Update development setup guide</li>
-                    <li>Update deployment procedures</li>
-                    <li>Create Rails 8.1 feature guides</li>
-                    <li>Update coding standards/conventions</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2>✅ Migration Sign-Off</h2>
-
-            <div class="phase-section">
-                <h3>Stakeholder Approval</h3>
-                <ul class="checklist">
-                    <li>Technical Lead approval</li>
-                    <li>Engineering Manager approval</li>
-                    <li>Product Manager approval (if user-facing changes)</li>
-                    <li>DevOps/SRE approval</li>
-                    <li>QA/Test Lead approval</li>
-                </ul>
-            </div>
-
-            <div class="phase-section">
-                <h3>Final Checklist</h3>
-                <ul class="checklist">
-                    <li>All tests passing in production</li>
-                    <li>Monitoring shows normal metrics</li>
-                    <li>No critical issues reported</li>
-                    <li>Team trained on new features</li>
-                    <li>Documentation updated</li>
-                    <li>Rollback procedure documented and tested</li>
-                </ul>
-            </div>
-
-            <div class="info-box">
-                <h3>Migration Status:</h3>
-                <ul class="checklist">
-                    <li><span class="status-indicator status-complete">COMPLETE</span> All criteria met, upgrade successful</li>
-                    <li><span class="status-indicator status-progress">PARTIAL</span> Upgrade complete, monitoring ongoing</li>
-                    <li><span class="status-indicator status-failed">FAILED</span> Rollback executed, retry planned</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2>📞 Contacts & Resources</h2>
-
-            <div class="project-info">
-                <h3>Key Personnel:</h3>
-                <ul>
-                    <li>Tech Lead: _________________ (Email/Slack)</li>
-                    <li>DevOps Lead: _________________ (Email/Slack)</li>
-                    <li>QA Lead: _________________ (Email/Slack)</li>
-                    <li>On-Call Engineer: _________________ (Phone)</li>
-                </ul>
-            </div>
-
-            <div class="info-box">
-                <h3>External Resources:</h3>
-                <ul>
-                    <li><a href="https://edgeguides.rubyonrails.org/8_1_release_notes.html" target="_blank">Rails 8.1 Release Notes</a></li>
-                    <li><a href="https://guides.rubyonrails.org/upgrading_ruby_on_rails.html" target="_blank">Upgrading Guide</a></li>
-                    <li><a href="https://github.com/rails/rails/issues" target="_blank">Rails GitHub Issues</a></li>
-                    <li><a href="https://discuss.rubyonrails.org" target="_blank">Rails Discussion Forum</a></li>
-                </ul>
-            </div>
-
-            <div class="highlight-box">
-                <h3>Monitoring Dashboards:</h3>
-                <ul>
-                    <li>Error Tracking: _________________ (URL)</li>
-                    <li>Performance: _________________ (URL)</li>
-                    <li>Uptime: _________________ (URL)</li>
-                    <li>Logs: _________________ (URL)</li>
-                </ul>
-            </div>
-        </section>
-
-        <section>
-            <h2>📅 Timeline Tracking</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Phase</th>
-                        <th>Planned Start</th>
-                        <th>Planned End</th>
-                        <th>Actual Start</th>
-                        <th>Actual End</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Pre-Migration Assessment</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Development Environment</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Testing Phase</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Staging Deployment</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Production Deployment</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Post-Migration Monitoring</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Feature Adoption</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="highlight-box">
-                <h3>Notes & Lessons Learned:</h3>
-                <p style="color: #666; font-style: italic; margin-top: 10px;">[Document key insights, challenges faced, and solutions discovered during migration]</p>
-                <div style="min-height: 100px; margin-top: 15px; padding: 10px; border: 1px dashed #ccc; border-radius: 4px; background: white;">
-                    <!-- Space for handwritten or typed notes -->
-                </div>
-            </div>
-        </section>
-
-        <a href="Rails_8.1_Documentation_Index.html" class="back-link">← Back to Documentation Index</a>
+<div class="project-info">
+  <p><strong>Project:</strong></p>
+  <p><strong>Current Version:</strong> Rails 8.0.</p>
+  <p><strong>Target Version:</strong> Rails 8.1.</p>
+  <p><strong>Migration Start Date:</strong> ___________</p>
+  <p><strong>Target Completion:</strong> ___________</p>
+</div>
+
+<section>
+  <h2>📋 Pre-Migration Assessment</h2>
+
+  <div class="phase-section">
+    <h3>Test Coverage Audit</h3>
+    <ul class="checklist">
+      <li>Run test suite and document baseline (all tests passing)</li>
+      <li>Measure current test coverage: ______%</li>
+      <li>Target coverage before upgrade: >80%</li>
+      <li>Identify critical paths without tests</li>
+      <li>Add missing test coverage for critical features</li>
+      <li>Document any known test failures or flaky tests</li>
+    </ul>
+  </div>
+
+  <div class="phase-section">
+    <h3>Dependency Analysis</h3>
+    <ul class="checklist">
+      <li>List all gems in <code>Gemfile</code> with versions</li>
+      <li>Check Rails 8.1 compatibility for each gem on GitHub issues</li>
+      <li>Identify gems that need updates</li>
+      <li>Identify gems that may need alternatives</li>
+      <li>Review <code>Gemfile.lock</code> for indirect dependencies</li>
+      <li>Document any custom monkey patches or Rails extensions</li>
+    </ul>
+
+    <h4>Gems Requiring Attention:</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Gem Name</th>
+          <th>Current Version</th>
+          <th>Rails 8.1 Compatible?</th>
+          <th>Action Required</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="4" style="text-align: center; color: #999">
+            Fill in during assessment
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="phase-section">
+    <h3>Breaking Changes Impact</h3>
+    <ul class="checklist">
+      <li>Review Action Dispatch parameter parsing changes</li>
+      <li>
+        Audit MySQL <code>unsigned_float</code> and
+        <code>unsigned_decimal</code> usage
+      </li>
+      <li>Check Active Storage Azure configuration</li>
+      <li>
+        Review Active Job <code>enqueue_after_transaction_commit</code> usage
+      </li>
+      <li>Assess schema.rb alphabetical sorting impact</li>
+      <li>Document all affected code locations</li>
+    </ul>
+
+    <div class="info-box">
+      <h4>Impact Assessment:</h4>
+      <ul>
+        <li>High Impact: _______ files</li>
+        <li>Medium Impact: _______ files</li>
+        <li>Low Impact: _______ files</li>
+        <li>No Impact: ✅</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>🔧 Environment Setup</h2>
+
+  <div class="phase-section">
+    <h3>Development Environment</h3>
+    <ul class="checklist">
+      <li>Create new branch: <code>upgrade/rails-8-1</code></li>
+      <li>Backup database: <code>pg_dump</code> / <code>mysqldump</code></li>
+      <li>Update <code>Gemfile</code>: <code>gem 'rails', '~> 8.1.0'</code></li>
+      <li>Update Rails: <code>bundle update rails</code></li>
+      <li>Update all gems: <code>bundle update</code></li>
+      <li>Run <code>bin/rails app:update</code> (interactive)</li>
+      <li>Review and merge configuration changes</li>
+      <li>Run <code>bin/rails db:migrate</code></li>
+    </ul>
+  </div>
+
+  <div class="phase-section">
+    <h3>Configuration Updates</h3>
+    <ul class="checklist">
+      <li>Review <code>config/application.rb</code> changes</li>
+      <li>Review <code>config/environments/*.rb</code> changes</li>
+      <li>Update <code>.gitattributes</code> for schema.rb normalization</li>
+      <li>Review <code>config/initializers</code> for deprecation warnings</li>
+      <li>Update <code>config/database.yml</code> if using Azure storage</li>
+    </ul>
+
+    <h4>.gitattributes update:</h4>
+    <pre>db/schema.rb merge=union</pre>
+  </div>
+</section>
+
+<section>
+  <h2>🧪 Testing Phase</h2>
+
+  <div class="phase-section">
+    <h3>Automated Testing</h3>
+    <ul class="checklist">
+      <li>
+        Run full test suite: <code>bin/rails test</code> (or
+        <code>bundle exec rspec</code>)
+      </li>
+      <li>Document all test failures</li>
+      <li>Fix compatibility issues</li>
+      <li>Re-run tests until all pass</li>
+      <li>Check for deprecation warnings in logs</li>
+      <li>Run linter/static analysis: <code>bundle exec rubocop</code></li>
+      <li>Run security audit: <code>bundle exec brakeman</code></li>
+    </ul>
+
+    <div class="info-box">
+      <h4>Test Results:</h4>
+      <ul>
+        <li>Total Tests: _______</li>
+        <li>Passing: _______</li>
+        <li>Failing: _______</li>
+        <li>Skipped: _______</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="phase-section">
+    <h3>Manual Testing Checklist</h3>
+    <ul class="checklist">
+      <li>User authentication/login flows</li>
+      <li>Critical business workflows</li>
+      <li>Payment processing (if applicable)</li>
+      <li>File uploads (Active Storage)</li>
+      <li>Background jobs (Active Job)</li>
+      <li>Admin interfaces</li>
+      <li>API endpoints (if applicable)</li>
+      <li>Email delivery</li>
+      <li>Third-party integrations</li>
+    </ul>
+  </div>
+
+  <div class="phase-section">
+    <h3>Performance Baseline</h3>
+    <ul class="checklist">
+      <li>
+        Measure baseline performance (before upgrade)
+        <ul style="margin-left: 20px; margin-top: 10px">
+          <li>Response time (p50): _______ ms</li>
+          <li>Response time (p95): _______ ms</li>
+          <li>Requests per second: _______</li>
+          <li>Memory usage: _______ MB</li>
+        </ul>
+      </li>
+      <li>Run performance tests after upgrade</li>
+      <li>Compare before/after metrics</li>
+      <li>Investigate any regressions >10%</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>🚀 Staging Deployment</h2>
+
+  <div class="phase-section">
+    <h3>Staging Environment Preparation</h3>
+    <ul class="checklist">
+      <li>Deploy to staging environment</li>
+      <li>Run database migrations</li>
+      <li>Verify all services start successfully</li>
+      <li>Check logs for errors/warnings</li>
+      <li>Run smoke tests on critical features</li>
+      <li>Load test with production-like data volume</li>
+      <li>Test with production data snapshot (if safe)</li>
+    </ul>
+  </div>
+
+  <div class="phase-section">
+    <h3>Staging Validation</h3>
+    <ul class="checklist">
+      <li>Full regression testing</li>
+      <li>Cross-browser testing (if web app)</li>
+      <li>Mobile responsiveness testing</li>
+      <li>Integration testing with external services</li>
+      <li>Performance monitoring setup</li>
+      <li>Error tracking validation (Sentry, Rollbar, etc.)</li>
+    </ul>
+  </div>
+
+  <div class="phase-section">
+    <h3>Rollback Test</h3>
+    <ul class="checklist">
+      <li>Document rollback procedure</li>
+      <li>Test rollback to Rails 8.0 in staging</li>
+      <li>Verify data integrity after rollback</li>
+      <li>Document any rollback gotchas</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>📊 Pre-Production Checklist</h2>
+
+  <div class="phase-section">
+    <h3>Monitoring Setup</h3>
+    <ul class="checklist">
+      <li>Configure error tracking (Sentry, Honeybadger, etc.)</li>
+      <li>Set up performance monitoring (New Relic, Scout, etc.)</li>
+      <li>Configure log aggregation (Papertrail, Datadog, etc.)</li>
+      <li>Set up uptime monitoring</li>
+      <li>Configure alert thresholds</li>
+      <li>Test alert notifications</li>
+    </ul>
+  </div>
+
+  <div class="phase-section">
+    <h3>Database Preparation</h3>
+    <ul class="checklist">
+      <li>Full database backup (production)</li>
+      <li>Test restore procedure</li>
+      <li>Estimate migration duration</li>
+      <li>Plan for migration downtime (if any)</li>
+      <li>Prepare database rollback strategy</li>
+    </ul>
+  </div>
+
+  <div class="phase-section">
+    <h3>Communication Plan</h3>
+    <ul class="checklist">
+      <li>Notify stakeholders of upgrade schedule</li>
+      <li>Prepare status page announcement</li>
+      <li>Schedule maintenance window (if needed)</li>
+      <li>Prepare internal team communication</li>
+      <li>Draft customer notification (if user-facing changes)</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>🎯 Production Deployment</h2>
+
+  <div class="phase-section">
+    <h3>Pre-Deployment</h3>
+    <ul class="checklist">
+      <li>Schedule deployment during low-traffic window</li>
+      <li>Confirm all stakeholders are available</li>
+      <li>Enable maintenance mode (if applicable)</li>
+      <li>Final production database backup</li>
+      <li>Scale up infrastructure (if needed for migration)</li>
+      <li>Verify monitoring dashboards ready</li>
+    </ul>
+  </div>
+
+  <div class="phase-section">
+    <h3>Deployment Steps</h3>
+    <ul class="checklist">
+      <li>Deploy code to production</li>
+      <li>Run database migrations: <code>bin/rails db:migrate</code></li>
+      <li>Restart application servers</li>
+      <li>Clear application cache</li>
+      <li>Warm up application cache (if applicable)</li>
+      <li>Disable maintenance mode</li>
+      <li>Monitor error rates (first 30 minutes)</li>
+    </ul>
+  </div>
+
+  <div class="phase-section">
+    <h3>Post-Deployment Validation</h3>
+    <ul class="checklist">
+      <li>Verify critical features working</li>
+      <li>Check error logs (no unexpected errors)</li>
+      <li>Monitor performance metrics</li>
+      <li>Test background job processing</li>
+      <li>Verify scheduled tasks running</li>
+      <li>Check third-party integrations</li>
+      <li>Monitor database performance</li>
+      <li>Validate asset delivery (CDN)</li>
+    </ul>
+  </div>
+
+  <div class="action-box">
+    <h3>Success Criteria (First 24 Hours)</h3>
+    <ul class="checklist">
+      <li>Error rate: < baseline +5%</li>
+      <li>Response time: within baseline ±10%</li>
+      <li>Background job success rate: >95%</li>
+      <li>Zero data corruption incidents</li>
+      <li>All critical features operational</li>
+      <li>No customer complaints about broken features</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>🆕 New Features Adoption</h2>
+
+  <div class="phase-section">
+    <h3>Quick Wins (Immediate)</h3>
+
+    <h4>Local CI Setup</h4>
+    <ul class="checklist">
+      <li>Create <code>config/ci.rb</code> configuration</li>
+      <li>Test with <code>bin/ci</code> locally</li>
+      <li>Update team documentation</li>
+      <li>Train developers on usage</li>
+    </ul>
+
+    <h4>Structured Event Reporting</h4>
+    <ul class="checklist">
+      <li>Configure event subscribers</li>
+      <li>Identify key events to track</li>
+      <li>Set up event logging/forwarding</li>
+      <li>Update monitoring dashboards</li>
+    </ul>
+
+    <h4>Markdown Rendering (if applicable)</h4>
+    <ul class="checklist">
+      <li>Update controllers using markdown</li>
+      <li>Test rendering in development</li>
+      <li>Deploy to production</li>
+    </ul>
+  </div>
+
+  <div class="phase-section">
+    <h3>Medium-Term Features</h3>
+
+    <h4>Active Job Continuations</h4>
+    <ul class="checklist">
+      <li>Identify long-running jobs for conversion</li>
+      <li>Refactor jobs to use continuations</li>
+      <li>Test with Kamal deployments</li>
+      <li>Monitor job resilience improvements</li>
+    </ul>
+
+    <h4>Lexxy Rich Text Editor (if using ActionText)</h4>
+    <ul class="checklist">
+      <li>Install Lexxy gem</li>
+      <li>Configure editor settings</li>
+      <li>Update frontend integration</li>
+      <li>Train content editors</li>
+    </ul>
+  </div>
+
+  <div class="phase-section">
+    <h3>Strategic Features</h3>
+
+    <h4>Action Push Native (if mobile app exists)</h4>
+    <ul class="checklist">
+      <li>Set up APNs certificates (iOS)</li>
+      <li>Configure FCM credentials (Android)</li>
+      <li>Install action_push_native gem</li>
+      <li>Implement notification sending</li>
+      <li>Test on iOS and Android devices</li>
+    </ul>
+
+    <h4>Active Record Tenanting (if multi-tenant needed)</h4>
+    <ul class="checklist">
+      <li>Design tenant data model</li>
+      <li>Configure tenant resolver</li>
+      <li>Migrate existing data</li>
+      <li>Test tenant isolation</li>
+      <li>Deploy incrementally</li>
+    </ul>
+
+    <h4>Turbo Offline (if offline capability needed)</h4>
+    <ul class="checklist">
+      <li>Design offline data strategy</li>
+      <li>Implement service workers</li>
+      <li>Configure data synchronization</li>
+      <li>Test offline scenarios</li>
+      <li>Deploy to production</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>🐛 Troubleshooting Guide</h2>
+
+  <div class="warning-box">
+    <h3>Common Issues & Solutions</h3>
+
+    <h4>Issue: Tests failing after upgrade</h4>
+    <ul class="checklist">
+      <li>Check for gem compatibility issues</li>
+      <li>Review deprecation warnings in test output</li>
+      <li>Update test helpers for Rails 8.1 changes</li>
+      <li>Check for breaking changes in test frameworks</li>
+    </ul>
+
+    <h4>Issue: Schema.rb shows massive changes</h4>
+    <ul class="checklist">
+      <li>This is expected (alphabetical sorting)</li>
+      <li>
+        Update <code>.gitattributes</code> with
+        <code>db/schema.rb merge=union</code>
+      </li>
+      <li>Commit schema.rb separately for clean diff</li>
+    </ul>
+
+    <h4>Issue: Background jobs failing</h4>
+    <ul class="checklist">
+      <li>Check Active Job configuration changes</li>
+      <li>Review <code>enqueue_after_transaction_commit</code> usage</li>
+      <li>Verify job queue configuration (Sidekiq, Delayed Job, etc.)</li>
+      <li>Check for serialization issues</li>
+    </ul>
+
+    <h4>Issue: Active Storage errors</h4>
+    <ul class="checklist">
+      <li>Check for Azure storage configuration</li>
+      <li>Verify storage service configuration</li>
+      <li>Test file upload/download</li>
+      <li>Review Active Storage migrations</li>
+    </ul>
+
+    <h4>Issue: Performance degradation</h4>
+    <ul class="checklist">
+      <li>Check database query performance</li>
+      <li>Review N+1 queries (bullet gem)</li>
+      <li>Verify cache configuration</li>
+      <li>Check asset compilation settings</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>📈 Post-Migration Monitoring</h2>
+
+  <div class="phase-section">
+    <h3>Initial Monitoring</h3>
+    <ul class="checklist">
+      <li>Daily error rate review</li>
+      <li>Daily performance metrics check</li>
+      <li>Background job success rate tracking</li>
+      <li>User feedback monitoring</li>
+      <li>Critical feature validation</li>
+    </ul>
+  </div>
+
+  <div class="phase-section">
+    <h3>Ongoing Monitoring</h3>
+    <ul class="checklist">
+      <li>Regular metrics review</li>
+      <li>Identify any new patterns/issues</li>
+      <li>Performance optimization opportunities</li>
+      <li>Cost analysis (infrastructure, CI, etc.)</li>
+    </ul>
+  </div>
+
+  <div class="action-box">
+    <h3>Success Metrics</h3>
+    <ul class="checklist">
+      <li>Zero critical bugs introduced</li>
+      <li>Performance within acceptable range (±10%)</li>
+      <li>All features working as expected</li>
+      <li>Team productive with new version</li>
+      <li>Positive user feedback</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>🔄 Rollback Procedure</h2>
+
+  <div class="warning-box">
+    <h3>If critical issues arise:</h3>
+
+    <h4>1. Immediate Actions</h4>
+    <ul class="checklist">
+      <li>Enable maintenance mode</li>
+      <li>Stop background job processing</li>
+      <li>Notify stakeholders</li>
+    </ul>
+
+    <h4>2. Rollback Steps</h4>
+    <ul class="checklist">
+      <li>Deploy previous Rails 8.0 version</li>
+      <li>Restore database backup (if schema changed)</li>
+      <li>Restart application servers</li>
+      <li>Clear cache</li>
+      <li>Verify application functionality</li>
+    </ul>
+
+    <h4>3. Post-Rollback</h4>
+    <ul class="checklist">
+      <li>Document issues encountered</li>
+      <li>Analyze root cause</li>
+      <li>Plan corrective actions</li>
+      <li>Reschedule upgrade</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>📝 Team Training</h2>
+
+  <div class="phase-section">
+    <h3>Developer Training Topics</h3>
+    <ul class="checklist">
+      <li>Rails 8.1 new features overview</li>
+      <li>Active Job Continuations usage</li>
+      <li>Local CI workflow</li>
+      <li>Structured Event Reporting</li>
+      <li>Breaking changes awareness</li>
+      <li>Troubleshooting common issues</li>
+    </ul>
+  </div>
+
+  <div class="phase-section">
+    <h3>Documentation Updates</h3>
+    <ul class="checklist">
+      <li>Update README with Rails 8.1 info</li>
+      <li>Update development setup guide</li>
+      <li>Update deployment procedures</li>
+      <li>Create Rails 8.1 feature guides</li>
+      <li>Update coding standards/conventions</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>✅ Migration Sign-Off</h2>
+
+  <div class="phase-section">
+    <h3>Stakeholder Approval</h3>
+    <ul class="checklist">
+      <li>Technical Lead approval</li>
+      <li>Engineering Manager approval</li>
+      <li>Product Manager approval (if user-facing changes)</li>
+      <li>DevOps/SRE approval</li>
+      <li>QA/Test Lead approval</li>
+    </ul>
+  </div>
+
+  <div class="phase-section">
+    <h3>Final Checklist</h3>
+    <ul class="checklist">
+      <li>All tests passing in production</li>
+      <li>Monitoring shows normal metrics</li>
+      <li>No critical issues reported</li>
+      <li>Team trained on new features</li>
+      <li>Documentation updated</li>
+      <li>Rollback procedure documented and tested</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <h3>Migration Status:</h3>
+    <ul class="checklist">
+      <li>
+        <span class="status-indicator status-complete">COMPLETE</span> All
+        criteria met, upgrade successful
+      </li>
+      <li>
+        <span class="status-indicator status-progress">PARTIAL</span> Upgrade
+        complete, monitoring ongoing
+      </li>
+      <li>
+        <span class="status-indicator status-failed">FAILED</span> Rollback
+        executed, retry planned
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>📞 Contacts & Resources</h2>
+
+  <div class="project-info">
+    <h3>Key Personnel:</h3>
+    <ul>
+      <li>Tech Lead: _________________ (Email/Slack)</li>
+      <li>DevOps Lead: _________________ (Email/Slack)</li>
+      <li>QA Lead: _________________ (Email/Slack)</li>
+      <li>On-Call Engineer: _________________ (Phone)</li>
+    </ul>
+  </div>
+
+  <div class="info-box">
+    <h3>External Resources:</h3>
+    <ul>
+      <li>
+        <a
+          href="https://edgeguides.rubyonrails.org/8_1_release_notes.html"
+          target="_blank"
+          >Rails 8.1 Release Notes</a
+        >
+      </li>
+      <li>
+        <a
+          href="https://guides.rubyonrails.org/upgrading_ruby_on_rails.html"
+          target="_blank"
+          >Upgrading Guide</a
+        >
+      </li>
+      <li>
+        <a href="https://github.com/rails/rails/issues" target="_blank"
+          >Rails GitHub Issues</a
+        >
+      </li>
+      <li>
+        <a href="https://discuss.rubyonrails.org" target="_blank"
+          >Rails Discussion Forum</a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div class="highlight-box">
+    <h3>Monitoring Dashboards:</h3>
+    <ul>
+      <li>Error Tracking: _________________ (URL)</li>
+      <li>Performance: _________________ (URL)</li>
+      <li>Uptime: _________________ (URL)</li>
+      <li>Logs: _________________ (URL)</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>📅 Timeline Tracking</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Phase</th>
+        <th>Planned Start</th>
+        <th>Planned End</th>
+        <th>Actual Start</th>
+        <th>Actual End</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Pre-Migration Assessment</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Development Environment</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Testing Phase</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Staging Deployment</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Production Deployment</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Post-Migration Monitoring</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Feature Adoption</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight-box">
+    <h3>Notes & Lessons Learned:</h3>
+    <p style="color: #666; font-style: italic; margin-top: 10px">
+      [Document key insights, challenges faced, and solutions discovered during
+      migration]
+    </p>
+    <div
+      style="
+        min-height: 100px;
+        margin-top: 15px;
+        padding: 10px;
+        border: 1px dashed #ccc;
+        border-radius: 4px;
+        background: white;
+      "
+    >
+      <!-- Space for handwritten or typed notes -->
+    </div>
+  </div>
+</section>
+
+<a href="Rails_8.1_Documentation_Index.html" class="back-link"
+  >← Back to Documentation Index</a
+>
 
 {% include "footer.html" %}
