@@ -1,0 +1,27 @@
+---
+title: Active Job Continuations - Rails 8.1 Feature
+pageTitle: 🔄 Active Job Continuations
+subtitle: Resumable Background Jobs for Zero-Downtime Deployments
+backLink: ../Rails_8.1_Documentation_Index.html
+permalink: features/Active_Job_Continuations.html
+---
+{% include "header.html" %}
+
+        <span class="feature-badge">Rails 8.1 Feature</span>
+
+        <section>
+            <h2>📋 Overview</h2>
+            <p>Active Job Continuations enable background jobs to checkpoint their progress and resume from where they left off after interruptions.</p>
+            <div class="info-box">
+                <h3>Key Benefits</h3>
+                <ul>
+                    <li><strong>♻️ Automatic Resume</strong> - Jobs continue from last checkpoint after interruptions</li>
+                    <li><strong>💰 50% Cost Reduction</strong> - Eliminate re-processing costs from failed jobs</li>
+                    <li><strong>🚀 Zero-Downtime Deploys</strong> - Deploy without waiting for jobs to finish</li>
+                    <li><strong>🛡️ Data Integrity</strong> - Transactions are preserved across interruptions</li>
+                </ul>
+            </div>
+            <p>See the <a href="Active_Job_Continuations.md">full technical documentation</a> for complete implementation patterns, checkpoint strategies, monitoring, debugging, and deployment integration guides.</p>
+        </section>
+
+{% include "footer.html" %}

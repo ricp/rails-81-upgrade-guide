@@ -5,7 +5,11 @@
       "WebFetch(domain:edgeguides.rubyonrails.org)",
       "WebFetch(domain:rubyonrails.org)",
       "WebFetch(domain:blog.codeminer42.com)",
-      "Bash(git tag:*)"
+      "Bash(git tag:*)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm run build:*)"
     ]
   },
   "enabledMcpjsonServers": [
