@@ -102,6 +102,26 @@
             text-decoration: underline;
         }
 
+        .professional-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .value-indicator {
+            font-size: 0.85em;
+            color: #666;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
         .document-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -322,6 +342,9 @@
     <div class="container">
         <header>
             <a href="Rails_8.1_Documentation_Index.html" class="back-link">← Back to Documentation Index</a>
+            <div style="margin-bottom: 15px;">
+                <span class="professional-badge">✨ PROFESSIONAL EDITION</span>
+            </div>
             <h1>Rails 8.1 Migration Checklist</h1>
             <p class="subtitle">Practical Upgrade Guide for Rails 8.0 → 8.1</p>
             <div class="meta-info">
@@ -335,6 +358,7 @@
                 <p><strong>AI Research & Analysis:</strong> Claude Sonnet 4.5 (Anthropic)</p>
                 <p><strong>Documentation Suite:</strong> October 7, 2025</p>
                 <p style="font-size: 0.9em; color: #d00; font-weight: 600;">📝 Living Document - Updated until Rails 8.1 stable release</p>
+                <p class="value-indicator">💎 Professional research-grade documentation • Complimentary access for early adopters and CHEQs customers</p>
                 
             </div>
         </header>

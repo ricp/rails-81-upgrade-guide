@@ -102,6 +102,26 @@
             text-decoration: underline;
         }
 
+        .professional-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .value-indicator {
+            font-size: 0.85em;
+            color: #666;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
         .document-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -322,6 +342,9 @@
     <div class="container">
         <header>
             {% if backLink %}<a href="{{ backLink }}" class="back-link">{{ backLinkText | default: "← Back to Documentation Index" }}</a>{% endif %}
+            <div style="margin-bottom: 15px;">
+                <span class="professional-badge">✨ PROFESSIONAL EDITION</span>
+            </div>
             {% if pageTitle %}<h1>{{ pageTitle }}</h1>{% endif %}
             {% if subtitle %}<p class="subtitle">{{ subtitle }}</p>{% endif %}
             <div class="meta-info">
@@ -335,6 +358,7 @@
                 <p><strong>AI Research & Analysis:</strong> Claude Sonnet 4.5 (Anthropic)</p>
                 <p><strong>Documentation Suite:</strong> {{ site.preparedDate }}</p>
                 <p style="font-size: 0.9em; color: #d00; font-weight: 600;">📝 {{ site.documentStatus }}</p>
+                <p class="value-indicator">💎 {{ site.editionValue }} • Complimentary access for {{ site.accessType }}</p>
                 {% if metaInfo %}{{ metaInfo }}{% endif %}
             </div>
         </header>
