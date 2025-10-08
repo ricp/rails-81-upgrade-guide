@@ -363,6 +363,136 @@
         </header>
 
 
+<style>
+  .hero-banner {
+    background: linear-gradient(135deg, #d00 0%, #8b0000 50%, #d00 100%);
+    padding: 60px 40px;
+    margin: -40px -40px 40px -40px;
+    border-radius: 0 0 16px 16px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(221, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: drift 20s linear infinite;
+  }
+
+  @keyframes drift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-title {
+    color: white;
+    font-size: 3.5em;
+    font-weight: 800;
+    margin: 0 0 20px 0;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    letter-spacing: -1px;
+  }
+
+  .hero-subtitle {
+    color: rgba(255,255,255,0.95);
+    font-size: 1.5em;
+    font-weight: 400;
+    margin: 0 0 30px 0;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+
+  .hero-stat {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    padding: 20px 30px;
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.2);
+    min-width: 160px;
+  }
+
+  .hero-stat-number {
+    display: block;
+    font-size: 2.5em;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 5px;
+  }
+
+  .hero-stat-label {
+    display: block;
+    font-size: 0.9em;
+    color: rgba(255,255,255,0.9);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 768px) {
+    .hero-banner {
+      padding: 40px 20px;
+      margin: -20px -20px 30px -20px;
+    }
+    .hero-title {
+      font-size: 2.2em;
+    }
+    .hero-subtitle {
+      font-size: 1.2em;
+    }
+    .hero-stats {
+      gap: 20px;
+    }
+  }
+</style>
+
+<div class="hero-banner">
+  <div class="hero-content">
+    <div class="hero-title">
+      🚀 Rails 8.1 Upgrade Guide
+    </div>
+    <div class="hero-subtitle">
+      Professional-Grade Documentation Suite for Enterprise Migration
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-number">12</span>
+        <span class="hero-stat-label">Documents</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">6</span>
+        <span class="hero-stat-label">Major Features</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">100%</span>
+        <span class="hero-stat-label">AI-Analyzed</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-number">8.0→8.1</span>
+        <span class="hero-stat-label">Upgrade Path</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section>
   <h2>🎯 Quick Start Guide</h2>
 
