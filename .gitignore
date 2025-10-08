@@ -7,3 +7,4 @@ node_modules/
 # Generated data (fetched from GitHub API)
 src/_data/github.json
 docs/
+.playwright-mcp/
